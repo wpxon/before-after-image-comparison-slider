@@ -1,0 +1,22 @@
+{
+    "name": "wpxon/before-after-image-comparison-slider",
+    "description": "A metabox plugin for WordPress.",
+    "type": "wordpress-plugin",
+    "license": "GPLv2",
+    "authors": [
+        {
+            "name": "WPxon",
+            "email": "wpxon7@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "BAICS\\": "includes/"
+        },
+        "files": [
+            "includes/functions.php"
+        ]
+    }
+}
