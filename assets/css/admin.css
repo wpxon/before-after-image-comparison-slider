@@ -32,6 +32,10 @@
     border-bottom: 1px solid #ddd;
     padding: 20px 0 !important; 
     display: block;
+} 
+.wpx-metabox-body tr td:nth-child(2) label {
+    display: block;
+    margin: 5px 0;
 }
 .show{
     display: block;

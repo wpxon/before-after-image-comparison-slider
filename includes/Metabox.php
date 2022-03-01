@@ -99,6 +99,9 @@ class Metabox {
             if ( $field['type'] == 'textarea' ) {
                 echo $this->field_textarea( $field );
             }  
+            if ( $field['type'] == 'radio' ) {
+                echo $this->field_radio( $field );
+            }  
         } 
         echo '</tbody>';
         echo '</table>';
@@ -154,7 +157,7 @@ class Metabox {
         $value = get_post_meta( $post->ID, $field['name'], true ) != '' ? get_post_meta( $post->ID, $field['name'], true ) : $field['default'];
 		$readonly  = isset( $field['readonly'] ) && ( $field['readonly'] == true ) ? ' readonly' : '';
 		$disabled  = isset( $field['disabled'] ) && ( $field['disabled'] == true ) ? ' disabled' : '';
-		$class  =  ( isset( $field['class'] ) ) ? $field['class'] : '';
+		$class  = isset( $field['class'] ) && ! is_null( $field['class'] ) ? $field['class'] : 'wpx-meta-field';
         ob_start();
         ?>
             <tr class="text-field <?php echo $class;?>" >
@@ -175,7 +178,7 @@ class Metabox {
         $value = get_post_meta( $post->ID, $field['name'], true ) != '' ? get_post_meta( $post->ID, $field['name'], true ) : $field['default'];
 		$readonly  = isset( $field['readonly'] ) && ( $field['readonly'] == true ) ? ' readonly' : '';
 		$disabled  = isset( $field['disabled'] ) && ( $field['disabled'] == true ) ? ' disabled' : '';
-		$class  =  ( isset( $field['class'] ) ) ? $field['class'] : '';
+		$class  = isset( $field['class'] ) && ! is_null( $field['class'] ) ? $field['class'] : 'wpx-meta-field';
         $columns = ( isset( $field['columns'] ) ) ? $field['columns'] : '';
         $rows = ( isset( $field['rows'] ) ) ? $field['rows'] : '';
         ob_start();
@@ -190,6 +193,27 @@ class Metabox {
         <?php
         return ob_get_clean();
 	} 
+
+	public function field_radio( $field ){
+		global $post; 
+        $value = get_post_meta( $post->ID, $field['name'], true ) != '' ? get_post_meta( $post->ID, $field['name'], true ) : $field['default']; 
+		$class  = isset( $field['class'] ) && ! is_null( $field['class'] ) ? $field['class'] : 'wpx-meta-field';
+		$disabled  = isset( $field['disabled'] ) && ( $field['disabled'] == true ) ? " disabled" : "";
+        ob_start();
+        ?>
+            <tr class="text-field <?php echo $class;?>" >
+                <td><strong><label for="<?php echo $field['name']; ?>"><?php echo $field['label']; ?></label></strong></td>
+                <td>
+                    <?php foreach ( $field['options'] as $key => $label ) { ?>
+                        <label for="<?php echo $field['name']; ?>[<?php echo $key; ?>]">
+                            <input type="radio" class="radio <?php echo $class; ?>" id="<?php echo $field['name']; ?>[<?php echo $key; ?>]" name="<?php echo $field['name']; ?>" value="<?php echo $key; ?>" <?php echo checked( $value, $key, false ); ?><?php echo $disabled; ?>><?php echo $label; ?>
+                        </label>  
+                    <?php } ?>  
+                    <?php echo $this->field_description( $field ); ?>
+                </td>
+            </tr>
+        <?php
+	}
  
 	public function field_description( $args ) {
         if ( ! empty( $args['desc'] ) ) { 

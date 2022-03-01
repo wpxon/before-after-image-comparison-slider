@@ -43,8 +43,7 @@ wpx_metabox(
                     array(
                         'name'      =>  't1',
                         'label'     =>  __( 'Tab 1' ),
-                        'type'      =>  'text', 
-                        'class'     =>  'title',
+                        'type'      =>  'text',  
                         'default'   =>  '',
                         'placeholder'   =>  'Hello World!',
                         'readonly'  =>  false,
@@ -53,8 +52,7 @@ wpx_metabox(
                     array(
                         'name'      =>  't2',
                         'label'     =>  __( 'Tab 1' ),
-                        'type'      =>  'textarea', 
-                        'class'     =>  'textarea-box',
+                        'type'      =>  'textarea',  
                         'default'   =>  '',
                         'placeholder'   =>  'Hello World!',
                         'columns'   =>  24,
@@ -65,8 +63,7 @@ wpx_metabox(
                     array(
                         'name'      =>  't3',
                         'label'     =>  __( 'Tab 1' ),
-                        'type'      =>  'text', 
-                        'class'     =>  'title',
+                        'type'      =>  'text',  
                         'default'   =>  '',
                         'placeholder'   =>  'Hello World!',
                         'readonly'  =>  false,
@@ -79,15 +76,30 @@ wpx_metabox(
                 'title' => 'Tab 2',
                 'fields' => array(
                     array(
-                        'name'      =>  'te',
-                        'label'     =>  __( 'Tab 2' ),
-                        'type'      =>  'text', 
-                        'class'     =>  'title',
-                        'default'   =>  '',
-                        'placeholder'   =>  'Hello World!',
-                        'readonly'  =>  false,
-                        'disabled'  =>  false,
-                    ) 
+                        'name'      =>  'ex_radio',
+                        'label'     =>  __( 'Radio Field' ),
+                        'type'      =>  'radio', 
+                        'options'   => array(
+                            'item_1'  => 'Item One',
+                            'item_2'  => 'Item Two',
+                            'item_3'  => 'Item Three',
+                            ),
+                        'default'   =>  'item_2',
+                        'disabled'  =>  false, // true|false
+                    ),
+                    array(
+                        'name'      =>  'sample_select',
+                        'label'     =>  __( 'Select Field' ),
+                        'type'      =>  'select', 
+                        'options'   => array(
+                            'option_1'  => 'Option One',
+                            'option_2'  => 'Option Two',
+                            'option_3'  => 'Option Three',
+                            ),
+                        'default'   =>  'option_2',
+                        'disabled'  =>  false, // true|false
+                        'multiple'  =>  true, // true|false
+                    ),
                 ),
             ),
             array(
@@ -97,8 +109,7 @@ wpx_metabox(
                     array(
                         'name'      =>  'tfe',
                         'label'     =>  __( 'Tab 3' ),
-                        'type'      =>  'text', 
-                        'class'     =>  'title',
+                        'type'      =>  'text',  
                         'default'   =>  '',
                         'placeholder'   =>  'Hello World!',
                         'readonly'  =>  false,
