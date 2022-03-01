@@ -59,16 +59,7 @@ wpx_metabox(
                         'rows'      =>  5,
                         'readonly'  =>  false,
                         'disabled'  =>  false,
-                    ),
-                    array(
-                        'name'      =>  't3',
-                        'label'     =>  __( 'Tab 1' ),
-                        'type'      =>  'text',  
-                        'default'   =>  '',
-                        'placeholder'   =>  'Hello World!',
-                        'readonly'  =>  false,
-                        'disabled'  =>  false,
-                    ) 
+                    )
                 ),
             ),
             array(
@@ -107,14 +98,13 @@ wpx_metabox(
                 'title' => 'Tab 3',
                 'fields' => array(
                     array(
-                        'name'      =>  'tfe',
-                        'label'     =>  __( 'Tab 3' ),
-                        'type'      =>  'text',  
-                        'default'   =>  '',
-                        'placeholder'   =>  'Hello World!',
-                        'readonly'  =>  false,
-                        'disabled'  =>  false,
-                    ) 
+                        'name'      =>  'ex_checkbox',
+                        'label'     =>  __( 'Checkbox Field' ),
+                        'type'      =>  'checkbox',
+                        'desc'      =>  __( 'This is a checkbox field.' ),
+                        'class'     =>  '',
+                        'disabled'  =>  false, // true|false
+                    )
                 ),
             ),
         ),

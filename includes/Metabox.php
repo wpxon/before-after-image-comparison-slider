@@ -105,6 +105,9 @@ class Metabox {
             if ( $field['type'] == 'select' ) {
                 echo $this->field_select( $field );
             }  
+            if ( $field['type'] == 'checkbox' ) {
+                echo $this->field_checkbox( $field );
+            }  
         } 
         echo '</tbody>';
         echo '</table>';
@@ -249,6 +252,24 @@ class Metabox {
         <?php
 	}
  
+	public function field_checkbox( $field ){
+		global $post; 
+		$field['default'] = ( isset( $field['default'] ) ) ? $field['default'] : '';
+        $value = get_post_meta( $post->ID, $field['name'], true ) != '' ? get_post_meta( $post->ID, $field['name'], true ) : $field['default']; 
+		$class  = isset( $field['class'] ) && ! is_null( $field['class'] ) ? $field['class'] : 'wpx-meta-field';
+		$disabled  = isset( $field['disabled'] ) && ( $field['disabled'] == true ) ? " disabled" : "";
+        ob_start();
+        ?>
+            <tr class="text-field <?php echo $class;?>" >
+                <td><strong><label for="<?php echo $field['name']; ?>"><?php echo $field['label']; ?></label></strong></td>
+                <td> 
+                    <input type="checkbox" class="<?php echo $field['class']; ?>" id="<?php echo $field['name']; ?>" name="<?php echo $field['name']; ?>" value="on" <?php echo checked( $value, 'on', false ); ?> <?php echo $disabled; ?> >
+                    <?php echo $this->field_description( $field ); ?>
+                </td>
+            </tr>
+        <?php 
+	}
+
 	public function field_description( $args ) {
         if ( ! empty( $args['desc'] ) ) { 
         	$desc = sprintf( '<p class="description">%s</p>', $args['desc'] ); 
