@@ -102,6 +102,9 @@ class Metabox {
             if ( $field['type'] == 'radio' ) {
                 echo $this->field_radio( $field );
             }  
+            if ( $field['type'] == 'select' ) {
+                echo $this->field_select( $field );
+            }  
         } 
         echo '</tbody>';
         echo '</table>';
@@ -209,6 +212,37 @@ class Metabox {
                             <input type="radio" class="radio <?php echo $class; ?>" id="<?php echo $field['name']; ?>[<?php echo $key; ?>]" name="<?php echo $field['name']; ?>" value="<?php echo $key; ?>" <?php echo checked( $value, $key, false ); ?><?php echo $disabled; ?>><?php echo $label; ?>
                         </label>  
                     <?php } ?>  
+                    <?php echo $this->field_description( $field ); ?>
+                </td>
+            </tr>
+        <?php
+	} 
+
+	public function field_select( $field ){
+		global $post; 
+        $value = get_post_meta( $post->ID, $field['name'], true ) != '' ? get_post_meta( $post->ID, $field['name'], true ) : $field['default'];  
+		$class  = isset( $field['class'] ) && ! is_null( $field['class'] ) ? $field['class'] : 'wpx-meta-field';
+		$disabled  = isset( $field['disabled'] ) && ( $field['disabled'] == true ) ? " disabled" : "";
+        $multiple  = isset( $field['multiple'] ) && ( $field['multiple'] == true ) ? " multiple" : "";
+        $name 	   = isset( $field['multiple'] ) && ( $field['multiple'] == true ) ? $field['name'] . '[]' : $field['name'];
+        ob_start();
+        ?>
+            <tr class="text-field <?php echo $class;?>" >
+                <td><strong><label for="<?php echo $field['name']; ?>"><?php echo $field['label']; ?></label></strong></td>
+                <td>
+                    <select class="<?php echo $class; ?>" name="<?php echo $name; ?>" id="<?php echo $name; ?>" <?php echo $multiple; ?> <?php echo $disabled; ?>>
+                        <?php foreach ( $field['options'] as $key => $label ) { ?>
+                            <?php if( $multiple == '' ): // single select ?>
+                                <option value="<?php echo $key; ?>" <?php echo selected( $value, $key, false ); ?>><?php echo $label; ?></option>  
+                            <?php else: // multiple select ?>
+                                <?php 
+                                    $values = explode( ',', $value );
+                                    $selected = in_array( $key, $values ) && $key != '' ? ' selected' : ''; 
+                                ?> 
+                                <option value="<?php echo $key; ?>" <?php echo $selected; ?>><?php echo $label; ?></option> 
+                            <?php endif; ?>
+                        <?php } ?>
+                    </select>
                     <?php echo $this->field_description( $field ); ?>
                 </td>
             </tr>
