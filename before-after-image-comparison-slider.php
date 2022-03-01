@@ -28,14 +28,14 @@ new BAICS\Assets();
 
 wpx_metabox(
     array(
-        'meta_box_id'   =>  'sssample_meta_id',
-        'label'         =>  __( 'Sample Meta Box 2' ),
+        'meta_box_id'   =>  'ex_meta_id',
+        'label'         =>  __( 'Example Metabox' ),
         'post_type'     =>  array( 'baics' ),
         'context'       =>  'normal', // side|normal|advanced
         'priority'      =>  'high', // high|low
         'hook_priority' =>  10,
-        'tab'           =>  true,
-        'tabs' => array(
+        'tab'           =>  true, // true|false
+        'tabs' => array( // if tab is TRUE
             array(
                 'id'    => 'tab_1', 
                 'title' => 'Tab 1',
@@ -53,10 +53,12 @@ wpx_metabox(
                     array(
                         'name'      =>  't2',
                         'label'     =>  __( 'Tab 1' ),
-                        'type'      =>  'text', 
-                        'class'     =>  'title',
+                        'type'      =>  'textarea', 
+                        'class'     =>  'textarea-box',
                         'default'   =>  '',
                         'placeholder'   =>  'Hello World!',
+                        'columns'   =>  24,
+                        'rows'      =>  5,
                         'readonly'  =>  false,
                         'disabled'  =>  false,
                     ),
@@ -105,7 +107,7 @@ wpx_metabox(
                 ),
             ),
         ),
-        'fields'        =>  array( 
+        'fields'        =>  array( // if tab is FALSE
             array(
                 'name'      =>  'sssample_text',
                 'label'     =>  __( 'Text Field 2' ),

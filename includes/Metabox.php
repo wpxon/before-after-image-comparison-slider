@@ -95,6 +95,9 @@ class Metabox {
         foreach ( $args as $field ) { 
             if ( $field['type'] == 'text' ) {
                 echo $this->field_text( $field );
+            }   
+            if ( $field['type'] == 'textarea' ) {
+                echo $this->field_textarea( $field );
             }  
         } 
         echo '</tbody>';
@@ -158,6 +161,29 @@ class Metabox {
                 <td><strong><label for="<?php echo $field['name']; ?>"><?php echo $field['label']; ?></label></strong></td>
                 <td>
                     <input type="text" id="<?php echo $field['name']; ?>" name="<?php echo $field['name']; ?>" value="<?php echo esc_attr($value); ?>" placeholder="<?php echo esc_attr($placeholder); ?>" <?php echo esc_attr($readonly); ?> <?php echo esc_attr($disabled); ?>>
+                    <?php echo $this->field_description( $field ); ?>
+                </td>
+            </tr>
+        <?php
+        return ob_get_clean();
+	} 
+
+	public function field_textarea( $field ){
+		global $post; 
+        $placeholder = ( isset( $field['placeholder'] ) ) ? $field['placeholder'] : '';
+        $field['default'] = ( isset( $field['default'] ) ) ? $field['default'] : '';
+        $value = get_post_meta( $post->ID, $field['name'], true ) != '' ? get_post_meta( $post->ID, $field['name'], true ) : $field['default'];
+		$readonly  = isset( $field['readonly'] ) && ( $field['readonly'] == true ) ? ' readonly' : '';
+		$disabled  = isset( $field['disabled'] ) && ( $field['disabled'] == true ) ? ' disabled' : '';
+		$class  =  ( isset( $field['class'] ) ) ? $field['class'] : '';
+        $columns = ( isset( $field['columns'] ) ) ? $field['columns'] : '';
+        $rows = ( isset( $field['rows'] ) ) ? $field['rows'] : '';
+        ob_start();
+        ?>
+            <tr class="text-field <?php echo $class;?>" >
+                <td><strong><label for="<?php echo $field['name']; ?>"><?php echo $field['label']; ?></label></strong></td>
+                <td>
+                    <textarea rows="<?php echo $rows; ?>" cols="<?php echo $columns; ?>" class="<?php echo $class; ?>" id="<?php echo $field['name']; ?>" name="<?php echo $field['name']; ?>" placeholder="<?php echo esc_attr($placeholder); ?>" <?php echo esc_attr($readonly); ?> <?php echo esc_attr($disabled); ?>><?php echo esc_attr($value); ?></textarea>
                     <?php echo $this->field_description( $field ); ?>
                 </td>
             </tr>
