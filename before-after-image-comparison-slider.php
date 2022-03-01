@@ -14,11 +14,17 @@
 
 defined( 'ABSPATH' ) || exit;
 
+
+define('BAICS_PATH', __DIR__);
+define('BAICS_ASSETS', plugins_url( '', __FILE__) . '/assets');
+define('BAICS_SRC', BAICS_PATH . '/includes'); 
+
 require_once __DIR__ . '/vendor/autoload.php';
 // Initialize post type.
 new BAICS\Post_Type();
 // Initialize admin setigns
 new BAICS\Admin();
+new BAICS\Assets();
 
 wpx_metabox(
     array(
@@ -37,10 +43,30 @@ wpx_metabox(
                     array(
                         'name'      =>  't1',
                         'label'     =>  __( 'Tab 1' ),
-                        'type'      =>  'text',
-                        'desc'      =>  __( 'This is a text field.' ),
+                        'type'      =>  'text', 
                         'class'     =>  'title',
-                        'default'   =>  'Hello World!',
+                        'default'   =>  '',
+                        'placeholder'   =>  'Hello World!',
+                        'readonly'  =>  false,
+                        'disabled'  =>  false,
+                    ),
+                    array(
+                        'name'      =>  't2',
+                        'label'     =>  __( 'Tab 1' ),
+                        'type'      =>  'text', 
+                        'class'     =>  'title',
+                        'default'   =>  '',
+                        'placeholder'   =>  'Hello World!',
+                        'readonly'  =>  false,
+                        'disabled'  =>  false,
+                    ),
+                    array(
+                        'name'      =>  't3',
+                        'label'     =>  __( 'Tab 1' ),
+                        'type'      =>  'text', 
+                        'class'     =>  'title',
+                        'default'   =>  '',
+                        'placeholder'   =>  'Hello World!',
                         'readonly'  =>  false,
                         'disabled'  =>  false,
                     ) 
@@ -53,10 +79,26 @@ wpx_metabox(
                     array(
                         'name'      =>  'te',
                         'label'     =>  __( 'Tab 2' ),
-                        'type'      =>  'text',
-                        'desc'      =>  __( 'This is a text field.' ),
+                        'type'      =>  'text', 
                         'class'     =>  'title',
-                        'default'   =>  'Hello World!',
+                        'default'   =>  '',
+                        'placeholder'   =>  'Hello World!',
+                        'readonly'  =>  false,
+                        'disabled'  =>  false,
+                    ) 
+                ),
+            ),
+            array(
+                'id'    => 'tab_3', 
+                'title' => 'Tab 3',
+                'fields' => array(
+                    array(
+                        'name'      =>  'tfe',
+                        'label'     =>  __( 'Tab 3' ),
+                        'type'      =>  'text', 
+                        'class'     =>  'title',
+                        'default'   =>  '',
+                        'placeholder'   =>  'Hello World!',
                         'readonly'  =>  false,
                         'disabled'  =>  false,
                     ) 
@@ -70,7 +112,8 @@ wpx_metabox(
                 'type'      =>  'text',
                 'desc'      =>  __( 'This is a text field.' ),
                 'class'     =>  'title',
-                'default'   =>  'Hello World!',
+                'default'   =>  '',
+                'placeholder'   =>  'Hello World!',
                 'readonly'  =>  false,
                 'disabled'  =>  false,
             ) 

@@ -67,7 +67,7 @@ class Metabox {
 		echo '<input type="hidden" name="mdc_cmb_nonce" id="mdc_cmb_nonce" value="' . 
 		wp_create_nonce( plugin_basename( __FILE__ ) ) . '" />';
         if( $this->tab ){              // tab title
-            echo '<div class="bics-tab-menu">';
+            echo '<div class="wpx-tab-menu">';
             foreach ( $this->tabs as $tab ) {  
                 ?>
                 <a href="<?php echo $tab['id'];?>"><?php echo $tab['title'];?></a> 
@@ -76,9 +76,9 @@ class Metabox {
             echo '</div>';
 
             // tab content
-            echo '<div class="bics-tab-content">';
+            echo '<div class="wpx-tab-body">';
             foreach ( $this->tabs as $tab ) { 
-                echo '<div id="'.$tab['id'].'">';
+                echo '<div id="'.$tab['id'].'" class="wpx-tab-content">';
                 $this->fallback_fields( $tab['fields'] ); 
                 echo '</div>';
             }
@@ -146,6 +146,7 @@ class Metabox {
 
 	public function field_text( $field ){
 		global $post; 
+        $placeholder = ( isset( $field['placeholder'] ) ) ? $field['placeholder'] : '';
         $field['default'] = ( isset( $field['default'] ) ) ? $field['default'] : '';
         $value = get_post_meta( $post->ID, $field['name'], true ) != '' ? get_post_meta( $post->ID, $field['name'], true ) : $field['default'];
 		$readonly  = isset( $field['readonly'] ) && ( $field['readonly'] == true ) ? ' readonly' : '';
@@ -156,7 +157,7 @@ class Metabox {
             <tr class="text-field <?php echo $class;?>" >
                 <td><strong><label for="<?php echo $field['name']; ?>"><?php echo $field['label']; ?></label></strong></td>
                 <td>
-                    <input type="text" id="<?php echo $field['name']; ?>" name="<?php echo $field['name']; ?>" value="<?php echo esc_attr($value); ?>" <?php echo esc_attr($readonly); ?> <?php echo esc_attr($disabled); ?>>
+                    <input type="text" id="<?php echo $field['name']; ?>" name="<?php echo $field['name']; ?>" value="<?php echo esc_attr($value); ?>" placeholder="<?php echo esc_attr($placeholder); ?>" <?php echo esc_attr($readonly); ?> <?php echo esc_attr($disabled); ?>>
                     <?php echo $this->field_description( $field ); ?>
                 </td>
             </tr>

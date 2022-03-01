@@ -1,0 +1,38 @@
+.wpx-tab-menu {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #39008f;
+}
+.wpx-tab-menu a { 
+    float: left;
+    border-right: 1px solid #fff;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    color: #fff;
+    text-decoration: none;
+} 
+.wpx-tab-menu a.active { 
+    background-color: #fff;
+    color: #222;
+}
+.wpx-tab-content{
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    background-color: #fff;
+}
+.wpx-metabox-body tr td:first-child {
+    width: 220px;
+}
+.wpx-metabox-body tr {
+    border-bottom: 1px solid #ddd;
+    padding: 20px 0 !important; 
+    display: block;
+}
+.show{
+    display: block;
+}
