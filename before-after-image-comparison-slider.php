@@ -104,8 +104,30 @@ wpx_metabox(
                         'desc'      =>  __( 'This is a checkbox field.' ),
                         'class'     =>  '',
                         'disabled'  =>  false, // true|false
+                    ),
+                    array(
+                        'name'      =>  'sample_fise',
+                        'label'     =>  __( 'First Image' ),
+                        'type'      =>  'file',
+                        'upload_button'     =>  __( 'Upload/Edit Image' ),
+                        'select_button'     =>  __( 'Select Image' ),
+                        'desc'      =>  '',
+                        'class'     =>  'image-field',
+                        'disabled'  =>  false, // true|false
+                        'default'   =>  'http://example.com/sample/file.txt'
+                    ),
+                    array(
+                        'name'      =>  'sample_fise_2',
+                        'label'     =>  __( 'Second Image' ),
+                        'type'      =>  'file',
+                        'upload_button'     =>  __( 'Upload/Edit Image' ),
+                        'select_button'     =>  __( 'Select Image' ),
+                        'desc'      =>  '',
+                        'class'     =>  'image-field',
+                        'disabled'  =>  false, // true|false
+                        'default'   =>  ''
                     )
-                ),
+                )
             ),
         ),
         'fields'        =>  array( // if tab is FALSE
@@ -123,3 +145,6 @@ wpx_metabox(
         )
     )
 );
+
+
+

@@ -108,6 +108,9 @@ class Metabox {
             if ( $field['type'] == 'checkbox' ) {
                 echo $this->field_checkbox( $field );
             }  
+            if ( $field['type'] == 'file' ) {
+                echo $this->field_file( $field );
+            }  
         } 
         echo '</tbody>';
         echo '</table>';
@@ -263,7 +266,37 @@ class Metabox {
             <tr class="text-field <?php echo $class;?>" >
                 <td><strong><label for="<?php echo $field['name']; ?>"><?php echo $field['label']; ?></label></strong></td>
                 <td> 
-                    <input type="checkbox" class="<?php echo $field['class']; ?>" id="<?php echo $field['name']; ?>" name="<?php echo $field['name']; ?>" value="on" <?php echo checked( $value, 'on', false ); ?> <?php echo $disabled; ?> >
+                    <input type="checkbox" class="<?php echo $class; ?>" id="<?php echo $field['name']; ?>" name="<?php echo $field['name']; ?>" value="on" <?php echo checked( $value, 'on', false ); ?> <?php echo $disabled; ?> >
+                    <?php echo $this->field_description( $field ); ?>
+                </td>
+            </tr>
+        <?php 
+	}
+
+	public function field_file( $field ){
+		global $post; 
+		$field['default'] = ( isset( $field['default'] ) ) ? $field['default'] : '';
+        $value = get_post_meta( $post->ID, $field['name'], true ) != '' ? get_post_meta( $post->ID, $field['name'], true ) : $field['default']; 
+		$class  = isset( $field['class'] ) && ! is_null( $field['class'] ) ? $field['class'] : 'wpx-meta-field';
+		$disabled  = isset( $field['disabled'] ) && ( $field['disabled'] == true ) ? " disabled" : "";
+
+        $id    = $field['name']  . '[' . $field['name'] . ']';
+        $upload_button = isset( $field['upload_button'] ) ? $field['upload_button'] : __( 'Choose File' );
+        $select_button = isset( $field['select_button'] ) ? $field['select_button'] : __( 'Select' );
+
+        $image_data = explode(',',$value);
+
+        ob_start();
+        ?>
+            <tr class="text-field <?php echo $class;?>" >
+                <td><strong><label for="<?php echo $field['name']; ?>"><?php echo $field['label']; ?></label></strong></td>
+                <td>  
+                    <div class="img-wrap">
+                        <span class="img-remove">X</span>
+                        <img class="image-preview <?php echo ( is_array($image_data) && !empty($image_data[1]) ) ? '' : 'hide'; ?>" src="<?php echo (is_array($image_data) && !empty($image_data[1]) ) ?  $image_data[1] : ''; ?>" width="100" height="70" alt=""> 
+                    </div>
+                    <input type="hidden" class="wpx-img-field <?php echo $class; ?>" id="<?php echo $field['name']; ?>" name="<?php echo $field['name']; ?>" value="<?php echo $value; ?>" <?php echo $disabled; ?>> 
+                    <input type="button" class="button mdc-browse" data-title="<?php esc_attr_e('Media Gallery'); ?>" data-select-text="<?php echo $select_button; ?>" value="<?php echo $upload_button; ?>"  <?php echo $disabled; ?>>
                     <?php echo $this->field_description( $field ); ?>
                 </td>
             </tr>
