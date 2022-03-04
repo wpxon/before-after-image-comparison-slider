@@ -80,7 +80,11 @@ jQuery(document).ready(function($) {
             attachment = file_frame.state().get('selection').first().toJSON();
             self.prev('.wpx-img-field').val(attachment.id + ',' +attachment.url); 
             self.siblings('.img-wrap').find('.image-preview').attr('src',attachment.url).removeClass('hide'); 
-            $('.supports-drag-drop').hide()
+            $('.supports-drag-drop').hide();
+        });
+
+        file_frame.on('close',function() { 
+            $('.supports-drag-drop').hide();
         });
 
         file_frame.open();
