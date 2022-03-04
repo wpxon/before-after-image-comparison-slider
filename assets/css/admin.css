@@ -28,11 +28,28 @@
 .wpx-metabox-body tr td:first-child {
     width: 220px;
 }
-.wpx-metabox-body tr {
+.wpx-metabox-body tr { 
     border-bottom: 1px solid #ddd;
     padding: 20px 0 !important; 
     display: block;
 } 
+tr.text-field.wpx-meta-field + tr.no-sep {
+    padding-top: 20px !important;
+}
+tr.no-sep + tr.wpx-meta-field {
+    margin-top: 15px;
+    border-top: 1px solid #ddd;
+} 
+.wpx-metabox-body tr:last-child{
+    border-bottom: 0;
+}
+tr.text-field.no-sep {
+    border: 0;
+    padding: 5px 0 !important;
+}
+tr.text-field.no-sep  td:nth-child(2) .description{
+    margin-bottom: 0;
+}
 .wpx-metabox-body tr td:nth-child(2) label {
     display: block;
     margin: 5px 0;

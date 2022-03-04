@@ -14,7 +14,7 @@ class Assets {
     } 
  
     public function admin_assets() {
-    	wp_enqueue_style( 'baics-admin', BAICS_ASSETS . '/css/admin.css' );
-        wp_enqueue_script( 'gabaicsu-admin', BAICS_ASSETS . '/js/admin.js', ['jquery'], '', true );
+    	wp_enqueue_style( 'baics-admin', BAICS_ASSETS . '/css/admin.css',[], md5_file(BAICS_ASSETS . '/css/admin.css'),'all' );
+        wp_enqueue_script( 'gabaicsu-admin', BAICS_ASSETS . '/js/admin.js', ['jquery'], md5_file(BAICS_ASSETS . '/js/admin.js'), true );
     }  
 }
