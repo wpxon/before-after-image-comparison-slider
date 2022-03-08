@@ -37,8 +37,9 @@ wpx_metabox(
         'tab'           =>  true, // true|false
         'tabs' => array( // if tab is TRUE
             array(
-                'id'    => 'tab_1', 
-                'title' => 'Tab 1',
+                'id'    => 'content', 
+                'title' => 'Content',
+                'icon' => 'dashicons-edit-large',
                 'fields' => array(
                     array(
                         'name'      =>  't1',
@@ -94,8 +95,9 @@ wpx_metabox(
                 ),
             ),
             array(
-                'id'    => 'tab_2', 
-                'title' => 'Tab 2',
+                'id'    => 'style', 
+                'title' => 'Style',
+                'icon' => 'dashicons-image-filter',
                 'fields' => array(
                     array(
                         'name'      =>  'ex_radio',
@@ -125,8 +127,9 @@ wpx_metabox(
                 ),
             ),
             array(
-                'id'    => 'tab_3', 
-                'title' => 'Tab 3',
+                'id'    => 'settings', 
+                'title' => 'Settings',
+                'icon' => 'dashicons-admin-generic',
                 'fields' => array(
                     array(
                         'name'      =>  'ex_checkbox',
@@ -157,6 +160,118 @@ wpx_metabox(
                         'class'     =>  'image-field',
                         'disabled'  =>  false, // true|false
                         'default'   =>  ''
+                    )
+                )
+            ),
+            array(
+                'id'    => 'settingsff', 
+                'title' => 'tab alt', 
+                'fields' => array(
+                    array(
+                        'name'      =>  'fex_checkbox',
+                        'label'     =>  __( 'Checkbox Field' ),
+                        'type'      =>  'checkbox',
+                        'desc'      =>  __( 'This is a checkbox field.' ),
+                        'class'     =>  '',
+                        'disabled'  =>  false, // true|false
+                    ),
+                    array(
+                        'name'      =>  'fsample_fise',
+                        'label'     =>  __( 'First Image' ),
+                        'type'      =>  'file',
+                        'upload_button'     =>  __( 'Upload/Edit Image' ),
+                        'select_button'     =>  __( 'Select Image' ),
+                        'desc'      =>  '',
+                        'class'     =>  'fimage-field',
+                        'disabled'  =>  false, // true|false
+                        'default'   =>  'http://example.com/sample/file.txt'
+                    ),
+                    array(
+                        'name'      =>  'fsample_fise_2',
+                        'label'     =>  __( 'Second Image' ),
+                        'type'      =>  'file',
+                        'upload_button'     =>  __( 'Upload/Edit Image' ),
+                        'select_button'     =>  __( 'Select Image' ),
+                        'desc'      =>  '',
+                        'class'     =>  'image-field',
+                        'disabled'  =>  false, // true|false
+                        'default'   =>  ''
+                    ),
+                    array(
+                        'name'      =>  'esx_radio',
+                        'label'     =>  __( 'Radio Field' ),
+                        'type'      =>  'radio', 
+                        'options'   => array(
+                            'item_1'  => 'Item One',
+                            'item_2'  => 'Item Two',
+                            'item_3'  => 'Item Three',
+                            ),
+                        'default'   =>  'item_2',
+                        'disabled'  =>  false, // true|false
+                    ),
+                    array(
+                        'name'      =>  'sampsle_select',
+                        'label'     =>  __( 'Select Field' ),
+                        'type'      =>  'select', 
+                        'options'   => array(
+                            'option_1'  => 'Option One',
+                            'option_2'  => 'Option Two',
+                            'option_3'  => 'Option Three',
+                            ),
+                        'default'   =>  'option_2',
+                        'disabled'  =>  false, // true|false
+                        'multiple'  =>  true, // true|false
+                    ),
+                    array(
+                        'name'      =>  't1s',
+                        'label'     =>  __( 'Tab 1' ),
+                        'type'      =>  'text',  
+                        'default'   =>  '',
+                        'placeholder'   =>  'Hello World!',
+                        'readonly'  =>  false,
+                        'disabled'  =>  false,
+                    ),
+                    array(
+                        'name'      =>  'tsa1',
+                        'label'     =>  __( 'Tab 1' ),
+                        'type'      =>  'text',  
+                        'default'   =>  '',
+                        'class'   =>  'no-sep',
+                        'placeholder'   =>  'Hello World!',
+                        'desc'   =>  'Hello World!',
+                        'readonly'  =>  false,
+                        'disabled'  =>  false,
+                    ),
+                    array(
+                        'name'      =>  'tss1',
+                        'label'     =>  __( 'Tab 1' ),
+                        'type'      =>  'text',  
+                        'default'   =>  '',
+                        'class'   =>  'no-sep',
+                        'placeholder'   =>  'Hello World!',
+                        'desc'   =>  'Hello World!',
+                        'readonly'  =>  false,
+                        'disabled'  =>  false,
+                    ), 
+                    array(
+                        'name'      =>  'tsf1',
+                        'label'     =>  __( 'Tab 1' ),
+                        'type'      =>  'text',  
+                        'default'   =>  '',
+                        'placeholder'   =>  'Hello World!',
+                        'readonly'  =>  false,
+                        'disabled'  =>  false,
+                    ),
+                    array(
+                        'name'      =>  'ts2',
+                        'label'     =>  __( 'Tab 1' ),
+                        'type'      =>  'textarea',  
+                        'default'   =>  '',
+                        'placeholder'   =>  'Hello World!',
+                        'columns'   =>  24,
+                        'rows'      =>  5,
+                        'readonly'  =>  false,
+                        'disabled'  =>  false,
                     )
                 )
             ),

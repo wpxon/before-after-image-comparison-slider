@@ -70,7 +70,11 @@ class Metabox {
             echo '<div class="wpx-tab-menu">';
             foreach ( $this->tabs as $tab ) {  
                 ?>
-                <a href="<?php echo $tab['id'];?>"><?php echo $tab['title'];?></a> 
+                <a href="<?php echo $tab['id'];?>">
+                    <?php if($tab['icon']): ?>
+                        <span class="dashicons <?php echo $tab['icon'];?>"></span>
+                    <?php endif; ?>
+                <?php echo $tab['title'];?></a> 
                 <?php
             } 
             echo '</div>';
