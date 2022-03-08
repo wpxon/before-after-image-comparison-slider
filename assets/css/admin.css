@@ -88,3 +88,21 @@ tr.text-field.no-sep  td:nth-child(2) .description{
 .image-preview {
     border: 1px solid #ddd;
 }
+td.shortcode.column-shortcode {
+    position: relative;
+}
+td.shortcode.column-shortcode .shortcode-display{
+    width: 150px;
+}
+span.copytext-notice { 
+    position: absolute;
+    top: 8px;
+    margin-left: 8px;
+    background: green;
+    color: #fff;
+    padding: 5px;
+    font-size: 14px;  
+}
+span.copytext-notice.hide{
+    display: none;  
+}

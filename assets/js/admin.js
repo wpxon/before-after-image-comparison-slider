@@ -1,5 +1,5 @@
 window.onload = (e) => {
-
+    
     let tab_menu_wrapper = document.querySelector('.wpx-tab-menu');
     if (typeof(tab_menu_wrapper) != 'undefined' && tab_menu_wrapper != null){
         let tab_menus = tab_menu_wrapper.querySelectorAll('a');
@@ -32,6 +32,19 @@ window.onload = (e) => {
         });
     }
 
+
+
+    let shortcode_display = document.querySelector('.shortcode-display');
+    shortcode_display.onclick = (e) => {
+        e.preventDefault(); 
+        e.target.select();
+        document.execCommand("copy");
+        let copy_notice = document.querySelector('.copytext-notice');
+        copy_notice.classList.remove('hide');
+        setTimeout(()=>{
+            copy_notice.classList.add('hide');
+        },1500); 
+    }
 
 }
 

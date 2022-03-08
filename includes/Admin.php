@@ -22,8 +22,9 @@ class Admin{
 
     function image_comparison_slider_column( $column, $post_id ) {
         // Shortcode column
-        if ( 'shortcode' === $column ) {
-            echo '[baics id="'.$post_id.'"]';
+        if ( 'shortcode' === $column ) { 
+            echo '<input class="shortcode-display" type=\'text\' value=\'[baics id="'.$post_id.'"]\' readonly>';
+			echo '<span class="copytext-notice hide">Copied Shortcode</span>';
         } 
         // Slider preview column
         if ( 'sliderpreview' === $column ) {
