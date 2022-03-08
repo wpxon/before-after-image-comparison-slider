@@ -28,7 +28,26 @@ class Admin{
         } 
         // Slider preview column
         if ( 'sliderpreview' === $column ) {
-            echo 'preview';
+			$before_img_url = '';
+			$after_img_url = '';
+			$before_img = get_post_meta( $post_id, 'before_image', true ) != '' ? get_post_meta( $post_id, 'before_image', true ) :''; 
+			$after_img = get_post_meta( $post_id, 'after_image', true ) != '' ? get_post_meta( $post_id, 'after_image', true ) :''; 
+
+			$before_img_data = explode(',',$before_img);
+			$after_img_data = explode(',',$after_img);
+
+			if (is_array($before_img_data) && !empty($before_img_data[1]) ) {
+				$before_img_url = $before_img_data[1];
+			}
+			if (is_array($after_img_data) && !empty($after_img_data[1]) ) {
+				$after_img_url = $after_img_data[1];
+			} 
+			if( !empty($before_img_url) || !empty($after_img_url) ) {
+				echo '<div class="slider-preview">';
+				echo '<img width="100" src="'.$before_img_url.'">';
+				echo '<img width="100" src="'.$after_img_url.'">';
+				echo '</div>';
+			} 
         }
     }
 }
