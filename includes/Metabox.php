@@ -290,6 +290,14 @@ class Metabox {
 
         $image_data = explode(',',$value);
 
+        $image_url = '';
+        $alt = '';
+        if (is_array($image_data) && !empty($image_data[1]) ) {
+            $image_url = $image_data[1];
+            $get_image_id = attachment_url_to_postid($image_url);
+            $alt = get_post_meta ( $get_image_id, '_wp_attachment_image_alt', true );
+        }  
+
         ob_start();
         ?>
             <tr class="text-field <?php echo $class;?>" >
@@ -297,10 +305,10 @@ class Metabox {
                 <td>  
                     <div class="img-wrap">
                         <span class="img-remove">X</span>
-                        <img class="image-preview <?php echo ( is_array($image_data) && !empty($image_data[1]) ) ? '' : 'hide'; ?>" src="<?php echo (is_array($image_data) && !empty($image_data[1]) ) ?  $image_data[1] : ''; ?>" width="100" height="70" alt=""> 
+                        <img class="image-preview <?php echo ( is_array($image_data) && !empty($image_data[1]) ) ? '' : 'hide'; ?>" src="<?php echo esc_url($image_url); ?>" width="100" height="70" alt="<?php echo esc_attr($alt); ?>"> 
                     </div>
                     <input type="hidden" class="wpx-img-field <?php echo $class; ?>" id="<?php echo $field['name']; ?>" name="<?php echo $field['name']; ?>" value="<?php echo $value; ?>" <?php echo $disabled; ?>> 
-                    <input type="button" class="button mdc-browse" data-title="<?php esc_attr_e('Media Gallery'); ?>" data-select-text="<?php echo $select_button; ?>" value="<?php echo $upload_button; ?>"  <?php echo $disabled; ?>>
+                    <input type="button" class="button wpx-browse" data-title="<?php esc_attr_e('Media Gallery'); ?>" data-select-text="<?php echo $select_button; ?>" value="<?php echo $upload_button; ?>"  <?php echo $disabled; ?>>
                     <?php echo $this->field_description( $field ); ?>
                 </td>
             </tr>
@@ -324,7 +332,7 @@ class Metabox {
                 $('.wp-color-picker-field').wpColorPicker();
 
                 // media uploader
-                $('.mdc-browse').on('click', function (event) {
+                $('.wpx-browse').on('click', function (event) {
                     event.preventDefault();
 
                     var self = $(this);
@@ -355,7 +363,7 @@ class Metabox {
             .mdc-row { border-bottom: 1px solid #ebebeb; padding: 8px 4px; }
             .mdc-row:last-child { border-bottom: 0px;}
             .mdc-row .mdc-label {display: inline-block; vertical-align: top; width: 200px; font-size: 15px; line-height: 24px;}
-            .mdc-row .mdc-browse { width: 96px;}
+            .mdc-row .wpx-browse { width: 96px;}
             .mdc-row .mdc-file { width: calc( 100% - 110px ); margin-right: 4px; line-height: 20px;}
             #postbox-container-1 .mdc-meta-field, #postbox-container-1 .mdc-meta-field-text {width: 100%;}
             #postbox-container-2 .mdc-meta-field, #postbox-container-2 .mdc-meta-field-text {width: 74%;}

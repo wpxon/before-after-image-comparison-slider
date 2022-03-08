@@ -49,7 +49,7 @@ jQuery(document).ready(function($) {
     });
 
     // media uploader
-    $('.mdc-browse').on('click', function (event) {
+    $('.wpx-browse').on('click', function (event) {
         event.preventDefault();
 
         var self = $(this);
