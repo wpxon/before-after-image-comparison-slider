@@ -63,6 +63,30 @@ wpx_metabox(
                         'disabled'  =>  false, // true|false
                         'default'   =>  ''
                     ),
+                    array(
+                        'name'      =>  'layout',
+                        'label'     =>  __( 'Orientation Layout' ),
+                        'type'      =>  'radio', 
+                        'options'   => array(
+                            'horizontal'  => 'Horizontal', 
+                            'vertical'  => 'Vertical'
+                            ),
+                        'default'   =>  'horizontal',
+                        'disabled'  =>  false, // true|false
+                    ),
+                    array(
+                        'name'      =>  'templates',
+                        'label'     =>  __( 'Template' ),
+                        'type'      =>  'select', 
+                        'options'   => array(
+                            'style_1'  => 'Style 1',
+                            'style_2'  => 'Style 2',
+                            'style_3'  => 'Style 3',
+                            ),
+                        'default'   =>  'style_1',
+                        'disabled'  =>  false, // true|false
+                        'multiple'  =>  false, // true|false
+                    ),
                 ),
             ),
             array(
