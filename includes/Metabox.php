@@ -355,22 +355,7 @@ class Metabox {
                     file_frame.open();
                 });
         });
-        </script>
-
-        <style type="text/css">
-            /* version 3.8 fix */
-            .form-table th { padding: 20px 10px; }
-            .mdc-row { border-bottom: 1px solid #ebebeb; padding: 8px 4px; }
-            .mdc-row:last-child { border-bottom: 0px;}
-            .mdc-row .mdc-label {display: inline-block; vertical-align: top; width: 200px; font-size: 15px; line-height: 24px;}
-            .mdc-row .wpx-browse { width: 96px;}
-            .mdc-row .mdc-file { width: calc( 100% - 110px ); margin-right: 4px; line-height: 20px;}
-            #postbox-container-1 .mdc-meta-field, #postbox-container-1 .mdc-meta-field-text {width: 100%;}
-            #postbox-container-2 .mdc-meta-field, #postbox-container-2 .mdc-meta-field-text {width: 74%;}
-            #postbox-container-1 .mdc-meta-field-text.mdc-file { width: calc(100% - 101px) }
-            #postbox-container-2 .mdc-meta-field-text.mdc-file { width: calc(100% - 306px) }
-            #wpbody-content .metabox-holder { padding-top: 5px; }
-        </style>
+        </script> 
         <?php
     }
 } 
