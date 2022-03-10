@@ -44,8 +44,8 @@ class Admin{
 			} 
 			if( !empty($before_img_url) || !empty($after_img_url) ) {
 				echo '<div class="slider-preview">';
-				echo '<img width="100" src="'.$before_img_url.'">';
-				echo '<img width="100" src="'.$after_img_url.'">';
+				echo '<div class="before"><img class="slide-img" src="'.$before_img_url.'"></div>';
+				echo '<div class="after"><img class="slide-img" src="'.$after_img_url.'"></div>';
 				echo '</div>';
 			} 
         }
