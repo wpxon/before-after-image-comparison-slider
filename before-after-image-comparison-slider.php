@@ -25,6 +25,7 @@ new BAICS\Post_Type();
 // Initialize admin setigns
 new BAICS\Admin();
 new BAICS\Assets();
+new BAICS\Shortcode();
 
 wpx_metabox(
     array(

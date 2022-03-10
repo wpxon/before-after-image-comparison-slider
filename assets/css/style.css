@@ -1,0 +1,22 @@
+
+.slider-preview {
+    max-width: 120px;
+    width: 100%;
+    position: relative;
+    height: 85px;
+}
+.slider-preview .before, 
+.slider-preview .after {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+}
+.slider-preview .after {
+    width: 50%;
+}
+.slide-img{
+    height: 100%;
+}
