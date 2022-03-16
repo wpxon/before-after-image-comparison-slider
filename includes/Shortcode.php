@@ -41,7 +41,7 @@ class Shortcode {
                         <polygon points="100 50 64 32 64 68 100 50" style="fill:#fff"/>
                     </svg>
                 </div>
-            </div>
+            </div> 
         <?php 
         return ob_get_clean();
     }

@@ -21,6 +21,6 @@ class Assets {
  
     public function frontend_assets() {
     	wp_enqueue_style( 'baics-style', BAICS_ASSETS . '/css/style.css',[], md5_file(BAICS_ASSETS . '/css/style.css'),'all' );
-        // wp_enqueue_script( 'baics-script', BAICS_ASSETS . '/js/script.js', ['jquery'], md5_file(BAICS_ASSETS . '/js/script.js'), true );
+        wp_enqueue_script( 'baics-script', BAICS_ASSETS . '/js/script.js', [], md5_file(BAICS_ASSETS . '/js/script.js'), true );
     }  
 }
