@@ -1,11 +1,11 @@
 
 .slider-preview {
-    max-width: 700px;
+    max-width: 550px;
     width: 100%;
     position: relative;
-    height: 400px;
+    height: 450px;
     overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    box-shadow:  0 6px 6px rgba(0,0,0,0.23);
 }
 .slider-preview .before, 
 .slider-preview .after {
@@ -67,11 +67,11 @@
   .scroller:after{
     content:" ";
     display: block;
-    width: 7px;
+    width: 5px;
     height: 9999px;
     position: absolute;
     left: 50%;
-    margin-left: -3.5px;
+    margin-left: -3px;
     z-index: 30;
     transition:0.1s;
   }
@@ -98,12 +98,12 @@
 .slider-preview.vertical .scroller:before, 
 .slider-preview.vertical .scroller:after {
   width: 999px;
-  height: 7px;
+  height: 5px;
   top: 50%;
   bottom: auto;
   left: auto;
   right: auto;
-  margin-top: -5px;
+  margin-top: -3px;
   margin-left: 0;
 }
 

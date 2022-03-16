@@ -83,30 +83,67 @@ wpx_metabox(
                 'icon' => 'dashicons-image-filter',
                 'fields' => array(
                     array(
-                        'name'      =>  'ex_radio',
-                        'label'     =>  __( 'Radio Field' ),
+                        'name'      =>  'slider_shadow_switch',
+                        'label'     =>  __( 'Slider Box Shadow' ),
                         'type'      =>  'radio', 
                         'options'   => array(
-                            'item_1'  => 'Item One',
-                            'item_2'  => 'Item Two',
-                            'item_3'  => 'Item Three',
+                                'on'  => 'On',
+                                'off'  => 'Off'
                             ),
-                        'default'   =>  'item_2',
+                        'default'   =>  'on',
+                        'class'   =>  'no-sep',
                         'disabled'  =>  false, // true|false
                     ),
                     array(
-                        'name'      =>  'sample_select',
-                        'label'     =>  __( 'Select Field' ),
-                        'type'      =>  'select', 
-                        'options'   => array(
-                            'option_1'  => 'Option One',
-                            'option_2'  => 'Option Two',
-                            'option_3'  => 'Option Three',
-                            ),
-                        'default'   =>  'option_2',
-                        'disabled'  =>  false, // true|false
-                        'multiple'  =>  true, // true|false
+                        'name'      =>  'slider_shadow_h_offset',
+                        'label'     =>  __( 'H Offset' ),
+                        'type'      =>  'text',  
+                        'default'   =>  '0px',
+                        'placeholder'   =>  '0px',
+                        'class'   =>  'no-sep',
+                        'readonly'  =>  false,
+                        'disabled'  =>  false,
                     ),
+                    array(
+                        'name'      =>  'slider_shadow_v_offset',
+                        'label'     =>  __( 'V Offset' ),
+                        'type'      =>  'text',  
+                        'default'   =>  '10px',
+                        'placeholder'   =>  '10px',
+                        'class'   =>  'no-sep',
+                        'readonly'  =>  false,
+                        'disabled'  =>  false,
+                    ),
+                    array(
+                        'name'      =>  'slider_shadow_blur',
+                        'label'     =>  __( 'Blur' ),
+                        'type'      =>  'text',  
+                        'default'   =>  '20px',
+                        'placeholder'   =>  '20px',
+                        'class'   =>  'no-sep',
+                        'readonly'  =>  false,
+                        'disabled'  =>  false,
+                    ),
+                    array(
+                        'name'      =>  'slider_shadow_color',
+                        'label'     =>  __( 'Shadow Color' ),
+                        'type'      =>  'colorpicker',  
+                        'default'   =>  '',
+                        'placeholder'   =>  '',
+                        'class'   =>  'no-sep',
+                        'readonly'  =>  false,
+                        'disabled'  =>  false,
+                    ),
+                    array(
+                        'name'      =>  'slider_handle_color',
+                        'label'     =>  __( 'Handle Color' ),
+                        'type'      =>  'colorpicker',  
+                        'default'   =>  '',
+                        'placeholder'   =>  '',
+                        'class'   =>  '',
+                        'readonly'  =>  false,
+                        'disabled'  =>  false,
+                    )
                 ),
             ),
             array(
@@ -132,17 +169,6 @@ wpx_metabox(
                         'class'     =>  'image-field',
                         'disabled'  =>  false, // true|false
                         'default'   =>  'http://example.com/sample/file.txt'
-                    ),
-                    array(
-                        'name'      =>  'sample_fise_2',
-                        'label'     =>  __( 'Second Image' ),
-                        'type'      =>  'file',
-                        'upload_button'     =>  __( 'Upload/Edit Image' ),
-                        'select_button'     =>  __( 'Select Image' ),
-                        'desc'      =>  '',
-                        'class'     =>  'image-field',
-                        'disabled'  =>  false, // true|false
-                        'default'   =>  ''
                     )
                 )
             ),

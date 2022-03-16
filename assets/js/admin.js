@@ -52,7 +52,7 @@ window.onload = (e) => {
 
 jQuery(document).ready(function($) {
     //color picker
-    $('.wp-color-picker-field').wpColorPicker();
+    $('.wpx-colorpicker').wpColorPicker();
     
     // clear image
     $('.img-remove').on('click', function (event) {

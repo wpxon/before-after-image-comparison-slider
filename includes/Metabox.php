@@ -115,6 +115,9 @@ class Metabox {
             if ( $field['type'] == 'file' ) {
                 echo $this->field_file( $field );
             }  
+            if ( $field['type'] == 'colorpicker' ) {
+                echo $this->field_colorpicker( $field );
+            }  
         } 
         echo '</tbody>';
         echo '</table>';
@@ -275,6 +278,27 @@ class Metabox {
                 </td>
             </tr>
         <?php 
+	}
+ 
+	public function field_colorpicker( $field ){
+		global $post; 
+        $placeholder = ( isset( $field['placeholder'] ) ) ? $field['placeholder'] : '';
+        $field['default'] = ( isset( $field['default'] ) ) ? $field['default'] : '';
+        $value = get_post_meta( $post->ID, $field['name'], true ) != '' ? get_post_meta( $post->ID, $field['name'], true ) : $field['default'];
+		$readonly  = isset( $field['readonly'] ) && ( $field['readonly'] == true ) ? ' readonly' : '';
+		$disabled  = isset( $field['disabled'] ) && ( $field['disabled'] == true ) ? ' disabled' : '';
+		$class  = isset( $field['class'] ) && ! is_null( $field['class'] ) ? $field['class'] : 'wpx-meta-field';
+        ob_start();
+        ?>
+            <tr class="text-field wpx-meta-field wpx-colorpicker-wrap  <?php echo $class; ?>" >
+                <td><strong><label for="<?php echo $field['name']; ?>"><?php echo $field['label']; ?></label></strong></td>
+                <td>
+                    <input type="text" id="<?php echo $field['name']; ?>" class="wpx-colorpicker" name="<?php echo $field['name']; ?>" value="<?php echo esc_attr($value); ?>" placeholder="<?php echo esc_attr($placeholder); ?>" <?php echo esc_attr($readonly); ?> <?php echo esc_attr($disabled); ?>>
+                    <?php echo $this->field_description( $field ); ?>
+                </td>
+            </tr>
+        <?php
+        return ob_get_clean();
 	}
 
 	public function field_file( $field ){

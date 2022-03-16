@@ -48,8 +48,9 @@ tr.no-sep + tr.wpx-meta-field {
     border-bottom: 0;
 }
 tr.text-field.no-sep {
-    border: 0;
+    border: 0 !important;
     padding: 5px 0 !important;
+    margin: 0 !important;
 }
 tr.text-field.no-sep  td:nth-child(2) .description{
     margin-bottom: 0;
@@ -126,4 +127,8 @@ span.copytext-notice.hide{
 }
 .slide-img{
     height: 100%;
+}
+.wpx-colorpicker-wrap .wp-picker-container label {
+    display: inline-block !important;
+    margin: 0 !important;
 }
