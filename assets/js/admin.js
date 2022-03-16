@@ -115,4 +115,18 @@ jQuery(document).ready(function($) {
             }
         }); 
     });
+
+    $('input[type=radio]').each(function(e){ 
+        let required_class = this.name;
+        let value = this.checked;  
+        $('.wpx-metabox-body tr').each(function(e){  
+            if( $(this).hasClass(required_class) ){ 
+                if( value ){
+                    $(this).addClass('hide');
+                }else{
+                    $(this).removeClass('hide');
+                }
+            }
+        }); 
+    }); 
 });
