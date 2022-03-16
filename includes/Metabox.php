@@ -173,10 +173,11 @@ class Metabox {
         $value = get_post_meta( $post->ID, $field['name'], true ) != '' ? get_post_meta( $post->ID, $field['name'], true ) : $field['default'];
 		$readonly  = isset( $field['readonly'] ) && ( $field['readonly'] == true ) ? ' readonly' : '';
 		$disabled  = isset( $field['disabled'] ) && ( $field['disabled'] == true ) ? ' disabled' : '';
+		$require  = isset( $field['require'] ) && ( $field['require'] == true ) ? $field['require'] : '';
 		$class  = isset( $field['class'] ) && ! is_null( $field['class'] ) ? $field['class'] : 'wpx-meta-field';
         ob_start();
         ?>
-            <tr class="text-field <?php echo $class;?>" >
+            <tr class="text-field <?php echo $class;?> <?php echo $require;?>" >
                 <td><strong><label for="<?php echo $field['name']; ?>"><?php echo $field['label']; ?></label></strong></td>
                 <td>
                     <input type="text" id="<?php echo $field['name']; ?>" name="<?php echo $field['name']; ?>" value="<?php echo esc_attr($value); ?>" placeholder="<?php echo esc_attr($placeholder); ?>" <?php echo esc_attr($readonly); ?> <?php echo esc_attr($disabled); ?>>
@@ -287,10 +288,11 @@ class Metabox {
         $value = get_post_meta( $post->ID, $field['name'], true ) != '' ? get_post_meta( $post->ID, $field['name'], true ) : $field['default'];
 		$readonly  = isset( $field['readonly'] ) && ( $field['readonly'] == true ) ? ' readonly' : '';
 		$disabled  = isset( $field['disabled'] ) && ( $field['disabled'] == true ) ? ' disabled' : '';
+		$require  = isset( $field['require'] ) && ( $field['require'] == true ) ? $field['require'] : '';
 		$class  = isset( $field['class'] ) && ! is_null( $field['class'] ) ? $field['class'] : 'wpx-meta-field';
         ob_start();
         ?>
-            <tr class="text-field wpx-meta-field wpx-colorpicker-wrap  <?php echo $class; ?>" >
+            <tr class="text-field wpx-meta-field wpx-colorpicker-wrap  <?php echo $class; ?>  <?php echo $require; ?>" >
                 <td><strong><label for="<?php echo $field['name']; ?>"><?php echo $field['label']; ?></label></strong></td>
                 <td>
                     <input type="text" id="<?php echo $field['name']; ?>" class="wpx-colorpicker" name="<?php echo $field['name']; ?>" value="<?php echo esc_attr($value); ?>" placeholder="<?php echo esc_attr($placeholder); ?>" <?php echo esc_attr($readonly); ?> <?php echo esc_attr($disabled); ?>>

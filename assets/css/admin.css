@@ -60,10 +60,10 @@ tr.text-field.no-sep  td:nth-child(2) .description{
     margin: 5px 0;
 }
 .show{
-    display: block;
+    display: block !important;
 }
 .hide{
-    display: none;
+    display: none !important;
 }
 .img-wrap {
     float: left;

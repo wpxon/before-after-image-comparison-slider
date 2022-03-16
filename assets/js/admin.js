@@ -32,8 +32,6 @@ window.onload = (e) => {
         });
     }
 
-
-
     let shortcode_display = document.querySelector('.shortcode-display');
     shortcode_display.onclick = (e) => {
         e.preventDefault(); 
@@ -101,5 +99,20 @@ jQuery(document).ready(function($) {
         });
 
         file_frame.open();
+    });
+
+    $('input[type=radio]').change(function() {
+        let required_class = this.name;
+        let value = this.value;
+
+        $('.wpx-metabox-body tr').each(function(e){ 
+            if( $(this).hasClass(required_class) ){
+                if( value == 'off' ){
+                    $(this).addClass('hide');
+                }else{
+                    $(this).removeClass('hide');
+                }
+            }
+        }); 
     });
 });
