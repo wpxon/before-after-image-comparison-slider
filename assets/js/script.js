@@ -25,27 +25,37 @@ window.addEventListener('DOMContentLoaded', (event) => {
     });
 
     // Let's figure out where their mouse is at
-    document.body.addEventListener('mousemove',function(e){
-        console.log(active);
+    document.body.addEventListener('mousemove',function(e){ 
         if (!active) return;
         // Their mouse is here...
-        let x = e.pageX;
+        let x = e.clientX;
+        let y = e.clientY;
         // but we want it relative to our wrapper
         x -= document.querySelector('.slider-preview').getBoundingClientRect().left;
+        y -= document.querySelector('.slider-preview').getBoundingClientRect().top; 
         // Okay let's change our state
-        scrollIt(x);
+        scrollIt(y);
     });
 
     // Let's use this function
     function scrollIt(x){
-        let transform = Math.max(0,(Math.min(x,document.querySelector('.slider-preview').offsetWidth)));
-        document.querySelector('.after').style.width = transform+"px";
-        document.querySelector('.scroller').style.left = transform-25+"px";
+        let type = 'y';
+
+        if( type == 'x' ){
+            let transform = Math.max(0,(Math.min(x,document.querySelector('.slider-preview').offsetWidth)));
+            document.querySelector('.after').style.width = transform+"px";
+            document.querySelector('.scroller').style.left = transform-25+"px";
+        }
+        if( type == 'y' ){ 
+            let transform = Math.max(0,(Math.min(x,document.querySelector('.slider-preview').offsetHeight)));
+            document.querySelector('.after').style.height = transform+"px";
+            document.querySelector('.scroller').style.top = transform-25+"px";
+        }
     }
 
     // Let's set our opening state based off the width, 
     // we want to show a bit of both images so the user can see what's going on
-    scrollIt(350);
+    scrollIt(260);
  
     // And finally let's repeat the process for touch events
     // first our middle scroller...
@@ -61,5 +71,5 @@ window.addEventListener('DOMContentLoaded', (event) => {
         active = false;
         document.querySelector('.scroller').classList.remove('scrolling');
     });
-    
+ 
 }); 

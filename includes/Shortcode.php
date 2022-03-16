@@ -28,7 +28,7 @@ class Shortcode {
             $after_img_url = $after_img_data[1];
         } 
         ?>
-            <div class="slider-preview">
+            <div class="slider-preview vertical">
                 <div class="before">
                     <img class="slide-img" src="<?php echo esc_url($before_img_url); ?>">
                 </div>
