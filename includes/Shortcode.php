@@ -17,6 +17,7 @@ class Shortcode {
 
         $before_image = get_post_meta( $id, 'before_image', true );
         $after_image  = get_post_meta( $id, 'after_image', true ); 
+        $layout  = get_post_meta( $id, 'layout', true ); 
 
         $before_img_data = explode(',',$before_image);
         $after_img_data = explode(',',$after_image);
@@ -28,7 +29,7 @@ class Shortcode {
             $after_img_url = $after_img_data[1];
         } 
         ?>
-            <div class="slider-preview vertical">
+            <div class="slider-preview <?php echo $layout ? $layout : 'horizontal'; ?>" data-layout="<?php echo $layout ? $layout : 'horizontal'; ?>">
                 <div class="before">
                     <img class="slide-img" src="<?php echo esc_url($before_img_url); ?>">
                 </div>

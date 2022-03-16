@@ -34,20 +34,21 @@ window.addEventListener('DOMContentLoaded', (event) => {
         x -= document.querySelector('.slider-preview').getBoundingClientRect().left;
         y -= document.querySelector('.slider-preview').getBoundingClientRect().top; 
         // Okay let's change our state
-        scrollIt(y);
+        scrollIt(x,y);
     });
 
     // Let's use this function
-    function scrollIt(x){
-        let type = 'y';
+    function scrollIt(x,y){
 
-        if( type == 'x' ){
+        let layout = document.querySelector('.slider-preview').dataset.layout;
+
+        if( layout == 'horizontal' ){
             let transform = Math.max(0,(Math.min(x,document.querySelector('.slider-preview').offsetWidth)));
             document.querySelector('.after').style.width = transform+"px";
             document.querySelector('.scroller').style.left = transform-25+"px";
         }
-        if( type == 'y' ){ 
-            let transform = Math.max(0,(Math.min(x,document.querySelector('.slider-preview').offsetHeight)));
+        if( layout == 'vertical' ){ 
+            let transform = Math.max(0,(Math.min(y,document.querySelector('.slider-preview').offsetHeight)));
             document.querySelector('.after').style.height = transform+"px";
             document.querySelector('.scroller').style.top = transform-25+"px";
         }
