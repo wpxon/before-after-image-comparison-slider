@@ -167,16 +167,17 @@ wpx_metabox(
                         'desc'  => __( 'Insert percentage value of 100 except %. Ex: 20,40,60' ),
                     ),
                     array(
-                        'name'      =>  'sample_fise',
-                        'label'     =>  __( 'First Image' ),
-                        'type'      =>  'file',
-                        'upload_button'     =>  __( 'Upload/Edit Image' ),
-                        'select_button'     =>  __( 'Select Image' ),
-                        'desc'      =>  '',
-                        'class'     =>  'image-field',
+                        'name'      =>  'slider_on_mouseover',
+                        'label'     =>  __( 'Slide on Mouse hover' ),
+                        'type'      =>  'radio', 
+                        'options'   => array(
+                                'on'  => 'On',
+                                'off'  => 'Off'
+                            ),
+                        'default'   =>  'off',
+                        'class'   =>  'no-sep',
                         'disabled'  =>  false, // true|false
-                        'default'   =>  'http://example.com/sample/file.txt'
-                    )
+                    ),
                 )
             ),
             array(

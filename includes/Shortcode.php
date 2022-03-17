@@ -21,6 +21,7 @@ class Shortcode {
         $layout  = get_post_meta( $id, 'layout', true ); 
         $shadow  = get_post_meta( $id, 'slider_shadow_switch', true ); 
         $img_offset  = get_post_meta( $id, 'slider_img_offset', true ); 
+        $mouseover  = get_post_meta( $id, 'slider_on_mouseover', true ); 
 
         $before_img_data = explode(',',$before_image);
         $after_img_data = explode(',',$after_image);
@@ -33,7 +34,7 @@ class Shortcode {
         } 
         do_action( 'baics_styles', $id );
         ?>
-            <div id="baics-<?php echo $id; ?>" class="slider-preview <?php echo $layout ? $layout : 'horizontal'; ?> <?php echo ($shadow == 'on' ) ? 'shadow' : ''; ?>" data-layout="<?php echo $layout ? $layout : 'horizontal'; ?>" data-offset="<?php echo $img_offset ? $img_offset : 50; ?>">
+            <div id="baics-<?php echo $id; ?>" class="slider-preview <?php echo $layout ? $layout : 'horizontal'; ?> <?php echo ($shadow == 'on' ) ? 'shadow' : ''; ?>" data-layout="<?php echo $layout ? $layout : 'horizontal'; ?>" data-offset="<?php echo $img_offset ? $img_offset : 50; ?>" data-auto-mousemove="<?php echo $mouseover ? $mouseover : 'off'; ?>">
                 <div class="before">
                     <img class="slide-img" src="<?php echo esc_url($before_img_url); ?>">
                 </div>
