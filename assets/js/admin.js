@@ -1,5 +1,6 @@
-window.onload = (e) => {
-    
+
+jQuery(document).ready(function($) {
+    // tab script
     let tab_menu_wrapper = document.querySelector('.wpx-tab-menu');
     if (typeof(tab_menu_wrapper) != 'undefined' && tab_menu_wrapper != null){
         let tab_menus = tab_menu_wrapper.querySelectorAll('a');
@@ -32,25 +33,24 @@ window.onload = (e) => {
         });
     }
 
-    let shortcode_display = document.querySelectorAll('.shortcode-display');
-    shortcode_display.forEach(item => { 
-        item.onclick = (e) => {
-            e.preventDefault(); 
-            e.target.select();
-            document.execCommand("copy");
-            let copy_notice = item.nextElementSibling; 
-            copy_notice.classList.remove('hide');
-            setTimeout(()=>{
-                copy_notice.classList.add('hide');
-            },1500); 
-        }
-    });
-
-}
-
-
-
-jQuery(document).ready(function($) {
+    // shortcode copy script
+    let shortcode = document.querySelector('.shortcode-display');
+    if (typeof(shortcode) != 'undefined' && shortcode != null){
+        let shortcode_display = document.querySelectorAll('.shortcode-display');
+        shortcode_display.forEach(item => { 
+            item.onclick = (e) => {
+                e.preventDefault(); 
+                e.target.select();
+                document.execCommand("copy");
+                let copy_notice = item.nextElementSibling; 
+                copy_notice.classList.remove('hide');
+                setTimeout(()=>{
+                    copy_notice.classList.add('hide');
+                },1500); 
+            }
+        });
+    }
+ 
     //color picker
     $('.wpx-colorpicker').wpColorPicker();
     
@@ -103,6 +103,7 @@ jQuery(document).ready(function($) {
         file_frame.open();
     });
 
+    // radio required script
     $('input[type=radio]').change(function() {
         let required_class = this.name;
         let value = this.value;
@@ -117,7 +118,6 @@ jQuery(document).ready(function($) {
             }
         }); 
     });
-
     $('input[type=radio]').each(function(e){ 
         let required_class = this.name;
         let value = this.checked;  
