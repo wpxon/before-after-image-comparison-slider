@@ -39,12 +39,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
         let scroller = '#'+id+' .scroller';
         if( layout == 'horizontal' ){
             let transform = Math.max(0,(Math.min(x,document.getElementById(id).offsetWidth)));
+            if( transform > 0 ) transform +=1;
             document.querySelector(after).style.width = transform+"px";
             document.querySelector(scroller).style.left = transform-25+"px";
         }
         if( layout == 'vertical' ){ 
             let y = x;
             let transform = Math.max(0,(Math.min(y,document.getElementById(id).offsetHeight)));
+            if( transform > 0 ) transform +=1;
             document.querySelector(`#${id} .after`).style.height = transform+"px";
             document.querySelector(`#${id} .scroller`).style.top = transform-25+"px";
         }
