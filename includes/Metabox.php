@@ -36,18 +36,9 @@ class Metabox {
 		self::hooks();
 	}
 
-	function enqueue_scripts() {
-        wp_enqueue_style( 'wp-color-picker' );
-        wp_enqueue_media();
-        wp_enqueue_script( 'wp-color-picker' );
-        wp_enqueue_script( 'jquery' );
-    }
-
 	public function hooks(){
 		add_action( 'add_meta_boxes' , array( $this, 'add_meta_box' ), $this->hook_priority );
-		add_action( 'save_post', array( $this, 'save_meta_fields' ), 1, 2 );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-		add_action( 'admin_head', array( $this, 'scripts' ) );
+		add_action( 'save_post', array( $this, 'save_meta_fields' ), 1, 2 ); 
 	}
 
 	public function add_meta_box() {
@@ -70,11 +61,11 @@ class Metabox {
             echo '<div class="wpx-tab-menu">';
             foreach ( $this->tabs as $tab ) {  
                 ?>
-                <a href="<?php echo $tab['id'];?>">
+                <a href="<?php echo esc_attr($tab['id']);?>">
                     <?php if($tab['icon']): ?>
-                        <span class="dashicons <?php echo $tab['icon'];?>"></span>
+                        <span class="dashicons <?php echo esc_attr($tab['icon']);?>"></span>
                     <?php endif; ?>
-                <?php echo $tab['title'];?></a> 
+                <?php echo esc_html($tab['title']);?></a> 
                 <?php
             } 
             echo '</div>';
@@ -82,7 +73,7 @@ class Metabox {
             // tab content
             echo '<div class="wpx-tab-body">';
             foreach ( $this->tabs as $tab ) { 
-                echo '<div id="'.$tab['id'].'" class="wpx-tab-content">';
+                echo '<div id="'.esc_attr($tab['id']).'" class="wpx-tab-content">';
                 $this->fallback_fields( $tab['fields'] ); 
                 echo '</div>';
             }
@@ -95,31 +86,31 @@ class Metabox {
 	
     public function fallback_fields( $args ){ 
         echo '<table class="wpx-metabox-body">';
-        echo '<tbody>'; 
-        foreach ( $args as $field ) { 
-            if ( $field['type'] == 'text' ) {
-                echo $this->field_text( $field );
-            }   
-            if ( $field['type'] == 'textarea' ) {
-                echo $this->field_textarea( $field );
-            }  
-            if ( $field['type'] == 'radio' ) {
-                echo $this->field_radio( $field );
-            }  
-            if ( $field['type'] == 'select' ) {
-                echo $this->field_select( $field );
-            }  
-            if ( $field['type'] == 'checkbox' ) {
-                echo $this->field_checkbox( $field );
-            }  
-            if ( $field['type'] == 'file' ) {
-                echo $this->field_file( $field );
-            }  
-            if ( $field['type'] == 'colorpicker' ) {
-                echo $this->field_colorpicker( $field );
-            }  
-        } 
-        echo '</tbody>';
+            echo '<tbody>'; 
+                foreach ( $args as $field ) { 
+                    if ( $field['type'] == 'text' ) {
+                        echo $this->field_text( $field );
+                    }   
+                    if ( $field['type'] == 'textarea' ) {
+                        echo $this->field_textarea( $field );
+                    }  
+                    if ( $field['type'] == 'radio' ) {
+                        echo $this->field_radio( $field );
+                    }  
+                    if ( $field['type'] == 'select' ) {
+                        echo $this->field_select( $field );
+                    }  
+                    if ( $field['type'] == 'checkbox' ) {
+                        echo $this->field_checkbox( $field );
+                    }  
+                    if ( $field['type'] == 'file' ) {
+                        echo $this->field_file( $field );
+                    }  
+                    if ( $field['type'] == 'colorpicker' ) {
+                        echo $this->field_colorpicker( $field );
+                    }  
+                } 
+            echo '</tbody>';
         echo '</table>';
     }
 
@@ -168,20 +159,20 @@ class Metabox {
 
 	public function field_text( $field ){
 		global $post; 
-        $placeholder = ( isset( $field['placeholder'] ) ) ? $field['placeholder'] : '';
+        $placeholder      = ( isset( $field['placeholder'] ) ) ? $field['placeholder'] : '';
         $field['default'] = ( isset( $field['default'] ) ) ? $field['default'] : '';
-        $value = get_post_meta( $post->ID, $field['name'], true ) != '' ? get_post_meta( $post->ID, $field['name'], true ) : $field['default'];
-		$readonly  = isset( $field['readonly'] ) && ( $field['readonly'] == true ) ? ' readonly' : '';
-		$disabled  = isset( $field['disabled'] ) && ( $field['disabled'] == true ) ? ' disabled' : '';
-		$require  = isset( $field['require'] ) && ( $field['require'] == true ) ? $field['require'] : '';
-		$class  = isset( $field['class'] ) && ! is_null( $field['class'] ) ? $field['class'] : 'wpx-meta-field';
-		$ext  = isset( $field['ext'] ) && ! is_null( $field['ext'] ) ? $field['ext'] : '';
+        $value            = get_post_meta( $post->ID, $field['name'], true ) != '' ? get_post_meta( $post->ID, $field['name'], true ) : $field['default'];
+		$readonly          = isset( $field['readonly'] ) && ( $field['readonly'] == true ) ? ' readonly' : '';
+		$disabled          = isset( $field['disabled'] ) && ( $field['disabled'] == true ) ? ' disabled' : '';
+		$require           = isset( $field['require'] ) && ( $field['require'] == true ) ? $field['require'] : '';
+		$class             = isset( $field['class'] ) && ! is_null( $field['class'] ) ? $field['class'] : 'wpx-meta-field';
+		$ext               = isset( $field['ext'] ) && ! is_null( $field['ext'] ) ? $field['ext'] : '';
         ob_start();
         ?>
-            <tr class="text-field <?php echo $class;?> <?php echo $require;?>" >
-                <td><strong><label for="<?php echo $field['name']; ?>"><?php echo $field['label']; ?></label></strong></td>
+            <tr class="text-field <?php echo esc_attr($class);?> <?php echo esc_attr($require);?>" >
+                <td><strong><label for="<?php echo esc_attr($field['name']); ?>"><?php echo esc_attr($field['label']); ?></label></strong></td>
                 <td>
-                    <input type="text" id="<?php echo $field['name']; ?>" name="<?php echo $field['name']; ?>" value="<?php echo esc_attr($value); ?>" placeholder="<?php echo esc_attr($placeholder); ?>" <?php echo esc_attr($readonly); ?> <?php echo esc_attr($disabled); ?>> <?php echo esc_html($ext); ?>
+                    <input type="text" id="<?php echo esc_attr($field['name']); ?>" name="<?php echo esc_attr($field['name']); ?>" value="<?php echo esc_attr($value); ?>" placeholder="<?php echo esc_attr($placeholder); ?>" <?php echo esc_attr($readonly); ?> <?php echo esc_attr($disabled); ?>> <?php echo esc_html($ext); ?>
                     <?php echo $this->field_description( $field ); ?>
                 </td>
             </tr>
@@ -191,20 +182,20 @@ class Metabox {
 
 	public function field_textarea( $field ){
 		global $post; 
-        $placeholder = ( isset( $field['placeholder'] ) ) ? $field['placeholder'] : '';
+        $placeholder      = ( isset( $field['placeholder'] ) ) ? $field['placeholder'] : '';
         $field['default'] = ( isset( $field['default'] ) ) ? $field['default'] : '';
-        $value = get_post_meta( $post->ID, $field['name'], true ) != '' ? get_post_meta( $post->ID, $field['name'], true ) : $field['default'];
-		$readonly  = isset( $field['readonly'] ) && ( $field['readonly'] == true ) ? ' readonly' : '';
-		$disabled  = isset( $field['disabled'] ) && ( $field['disabled'] == true ) ? ' disabled' : '';
-		$class  = isset( $field['class'] ) && ! is_null( $field['class'] ) ? $field['class'] : 'wpx-meta-field';
-        $columns = ( isset( $field['columns'] ) ) ? $field['columns'] : '';
-        $rows = ( isset( $field['rows'] ) ) ? $field['rows'] : '';
+        $value            = get_post_meta( $post->ID, $field['name'], true ) != '' ? get_post_meta( $post->ID, $field['name'], true ) : $field['default'];
+		$readonly          = isset( $field['readonly'] ) && ( $field['readonly'] == true ) ? ' readonly' : '';
+		$disabled          = isset( $field['disabled'] ) && ( $field['disabled'] == true ) ? ' disabled' : '';
+		$class             = isset( $field['class'] ) && ! is_null( $field['class'] ) ? $field['class'] : 'wpx-meta-field';
+        $columns          = ( isset( $field['columns'] ) ) ? $field['columns'] : '';
+        $rows             = ( isset( $field['rows'] ) ) ? $field['rows'] : '';
         ob_start();
         ?>
-            <tr class="text-field <?php echo $class;?>" >
-                <td><strong><label for="<?php echo $field['name']; ?>"><?php echo $field['label']; ?></label></strong></td>
+            <tr class="text-field <?php echo esc_attr($class);?>" >
+                <td><strong><label for="<?php echo esc_attr($field['name']); ?>"><?php echo esc_attr($field['label']); ?></label></strong></td>
                 <td>
-                    <textarea rows="<?php echo $rows; ?>" cols="<?php echo $columns; ?>" class="<?php echo $class; ?>" id="<?php echo $field['name']; ?>" name="<?php echo $field['name']; ?>" placeholder="<?php echo esc_attr($placeholder); ?>" <?php echo esc_attr($readonly); ?> <?php echo esc_attr($disabled); ?>><?php echo esc_attr($value); ?></textarea>
+                    <textarea rows="<?php echo esc_attr($rows); ?>" cols="<?php echo esc_attr($columns); ?>" class="<?php echo esc_attr($class); ?>" id="<?php echo esc_attr($field['name']); ?>" name="<?php echo esc_attr($field['name']); ?>" placeholder="<?php echo esc_attr($placeholder); ?>" <?php echo esc_attr($readonly); ?> <?php echo esc_attr($disabled); ?>><?php echo esc_attr($value); ?></textarea>
                     <?php echo $this->field_description( $field ); ?>
                 </td>
             </tr>
@@ -214,17 +205,17 @@ class Metabox {
 
 	public function field_radio( $field ){
 		global $post; 
-        $value = get_post_meta( $post->ID, $field['name'], true ) != '' ? get_post_meta( $post->ID, $field['name'], true ) : $field['default']; 
-		$class  = isset( $field['class'] ) && ! is_null( $field['class'] ) ? $field['class'] : 'wpx-meta-field';
+        $value    = get_post_meta( $post->ID, $field['name'], true ) != '' ? get_post_meta( $post->ID, $field['name'], true ) : $field['default']; 
+		$class     = isset( $field['class'] ) && ! is_null( $field['class'] ) ? $field['class'] : 'wpx-meta-field';
 		$disabled  = isset( $field['disabled'] ) && ( $field['disabled'] == true ) ? " disabled" : "";
         ob_start();
         ?>
-            <tr class="text-field <?php echo $class;?>" >
-                <td><strong><label for="<?php echo $field['name']; ?>"><?php echo $field['label']; ?></label></strong></td>
+            <tr class="text-field <?php echo esc_attr($class); ?>" >
+                <td><strong><label for="<?php echo esc_attr($field['name']); ?>"><?php echo esc_attr($field['label']); ?></label></strong></td>
                 <td>
                     <?php foreach ( $field['options'] as $key => $label ) { ?>
-                        <label for="<?php echo $field['name']; ?>[<?php echo $key; ?>]">
-                            <input type="radio" class="radio <?php echo $class; ?>" id="<?php echo $field['name']; ?>[<?php echo $key; ?>]" name="<?php echo $field['name']; ?>" value="<?php echo $key; ?>" <?php echo checked( $value, $key, false ); ?><?php echo $disabled; ?>><?php echo $label; ?>
+                        <label for="<?php echo esc_attr($field['name']); ?>[<?php echo esc_attr($key); ?>]">
+                            <input type="radio" class="radio <?php echo esc_attr($class); ?>" id="<?php echo esc_attr($field['name']); ?>[<?php echo esc_attr($key); ?>]" name="<?php echo esc_attr($field['name']); ?>" value="<?php echo esc_attr($key); ?>" <?php echo checked( $value, $key, false ); ?><?php echo esc_attr($disabled); ?>><?php echo esc_html($label); ?>
                         </label>  
                     <?php } ?>  
                     <?php echo $this->field_description( $field ); ?>
@@ -235,26 +226,26 @@ class Metabox {
 
 	public function field_select( $field ){
 		global $post; 
-        $value = get_post_meta( $post->ID, $field['name'], true ) != '' ? get_post_meta( $post->ID, $field['name'], true ) : $field['default'];  
-		$class  = isset( $field['class'] ) && ! is_null( $field['class'] ) ? $field['class'] : 'wpx-meta-field';
-		$disabled  = isset( $field['disabled'] ) && ( $field['disabled'] == true ) ? " disabled" : "";
+        $value     = get_post_meta( $post->ID, $field['name'], true ) != '' ? get_post_meta( $post->ID, $field['name'], true ) : $field['default'];  
+		$class      = isset( $field['class'] ) && ! is_null( $field['class'] ) ? $field['class'] : 'wpx-meta-field';
+		$disabled   = isset( $field['disabled'] ) && ( $field['disabled'] == true ) ? " disabled" : "";
         $multiple  = isset( $field['multiple'] ) && ( $field['multiple'] == true ) ? " multiple" : "";
         $name 	   = isset( $field['multiple'] ) && ( $field['multiple'] == true ) ? $field['name'] . '[]' : $field['name'];
         ob_start();
         ?>
-            <tr class="text-field <?php echo $class;?>" >
-                <td><strong><label for="<?php echo $field['name']; ?>"><?php echo $field['label']; ?></label></strong></td>
+            <tr class="text-field <?php echo esc_attr($class);?>" >
+                <td><strong><label for="<?php echo esc_attr($field['name']); ?>"><?php echo esc_attr($field['label']); ?></label></strong></td>
                 <td>
-                    <select class="<?php echo $class; ?>" name="<?php echo $name; ?>" id="<?php echo $name; ?>" <?php echo $multiple; ?> <?php echo $disabled; ?>>
+                    <select class="<?php echo esc_attr($class); ?>" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($name); ?>" <?php echo esc_attr($multiple); ?> <?php echo esc_attr($disabled); ?>>
                         <?php foreach ( $field['options'] as $key => $label ) { ?>
                             <?php if( $multiple == '' ): // single select ?>
-                                <option value="<?php echo $key; ?>" <?php echo selected( $value, $key, false ); ?>><?php echo $label; ?></option>  
+                                <option value="<?php echo esc_attr($key); ?>" <?php echo selected( $value, $key, false ); ?>><?php echo esc_html($label); ?></option>  
                             <?php else: // multiple select ?>
                                 <?php 
                                     $values = explode( ',', $value );
                                     $selected = in_array( $key, $values ) && $key != '' ? ' selected' : ''; 
                                 ?> 
-                                <option value="<?php echo $key; ?>" <?php echo $selected; ?>><?php echo $label; ?></option> 
+                                <option value="<?php echo esc_attr($key); ?>" <?php echo esc_attr($selected); ?>><?php echo esc_html($label); ?></option> 
                             <?php endif; ?>
                         <?php } ?>
                     </select>
@@ -267,15 +258,15 @@ class Metabox {
 	public function field_checkbox( $field ){
 		global $post; 
 		$field['default'] = ( isset( $field['default'] ) ) ? $field['default'] : '';
-        $value = get_post_meta( $post->ID, $field['name'], true ) != '' ? get_post_meta( $post->ID, $field['name'], true ) : $field['default']; 
-		$class  = isset( $field['class'] ) && ! is_null( $field['class'] ) ? $field['class'] : 'wpx-meta-field';
-		$disabled  = isset( $field['disabled'] ) && ( $field['disabled'] == true ) ? " disabled" : "";
+        $value           = get_post_meta( $post->ID, $field['name'], true ) != '' ? get_post_meta( $post->ID, $field['name'], true ) : $field['default']; 
+		$class            = isset( $field['class'] ) && ! is_null( $field['class'] ) ? $field['class'] : 'wpx-meta-field';
+		$disabled         = isset( $field['disabled'] ) && ( $field['disabled'] == true ) ? " disabled" : "";
         ob_start();
         ?>
-            <tr class="text-field <?php echo $class;?>" >
-                <td><strong><label for="<?php echo $field['name']; ?>"><?php echo $field['label']; ?></label></strong></td>
+            <tr class="text-field <?php echo esc_attr($class);?>" >
+                <td><strong><label for="<?php echo esc_attr($field['name']); ?>"><?php echo esc_attr($field['label']); ?></label></strong></td>
                 <td> 
-                    <input type="checkbox" class="<?php echo $class; ?>" id="<?php echo $field['name']; ?>" name="<?php echo $field['name']; ?>" value="on" <?php echo checked( $value, 'on', false ); ?> <?php echo $disabled; ?> >
+                    <input type="checkbox" class="<?php echo esc_attr($class); ?>" id="<?php echo esc_attr($field['name']); ?>" name="<?php echo esc_attr($field['name']); ?>" value="on" <?php echo checked( $value, 'on', false ); ?> <?php echo esc_attr($disabled); ?> >
                     <?php echo $this->field_description( $field ); ?>
                 </td>
             </tr>
@@ -284,19 +275,19 @@ class Metabox {
  
 	public function field_colorpicker( $field ){
 		global $post; 
-        $placeholder = ( isset( $field['placeholder'] ) ) ? $field['placeholder'] : '';
+        $placeholder      = ( isset( $field['placeholder'] ) ) ? $field['placeholder'] : '';
         $field['default'] = ( isset( $field['default'] ) ) ? $field['default'] : '';
-        $value = get_post_meta( $post->ID, $field['name'], true ) != '' ? get_post_meta( $post->ID, $field['name'], true ) : $field['default'];
-		$readonly  = isset( $field['readonly'] ) && ( $field['readonly'] == true ) ? ' readonly' : '';
-		$disabled  = isset( $field['disabled'] ) && ( $field['disabled'] == true ) ? ' disabled' : '';
-		$require  = isset( $field['require'] ) && ( $field['require'] == true ) ? $field['require'] : '';
-		$class  = isset( $field['class'] ) && ! is_null( $field['class'] ) ? $field['class'] : 'wpx-meta-field';
+        $value            = get_post_meta( $post->ID, $field['name'], true ) != '' ? get_post_meta( $post->ID, $field['name'], true ) : $field['default'];
+		$readonly          = isset( $field['readonly'] ) && ( $field['readonly'] == true ) ? ' readonly' : '';
+		$disabled          = isset( $field['disabled'] ) && ( $field['disabled'] == true ) ? ' disabled' : '';
+		$require           = isset( $field['require'] ) && ( $field['require'] == true ) ? $field['require'] : '';
+		$class             = isset( $field['class'] ) && ! is_null( $field['class'] ) ? $field['class'] : 'wpx-meta-field';
         ob_start();
         ?>
-            <tr class="text-field wpx-meta-field wpx-colorpicker-wrap  <?php echo $class; ?>  <?php echo $require; ?>" >
-                <td><strong><label for="<?php echo $field['name']; ?>"><?php echo $field['label']; ?></label></strong></td>
+            <tr class="text-field wpx-meta-field wpx-colorpicker-wrap  <?php echo esc_attr($class); ?>  <?php echo esc_attr($require); ?>" >
+                <td><strong><label for="<?php echo esc_attr($field['name']); ?>"><?php echo esc_attr($field['label']); ?></label></strong></td>
                 <td>
-                    <input type="text" id="<?php echo $field['name']; ?>" class="wpx-colorpicker" name="<?php echo $field['name']; ?>" value="<?php echo esc_attr($value); ?>" placeholder="<?php echo esc_attr($placeholder); ?>" <?php echo esc_attr($readonly); ?> <?php echo esc_attr($disabled); ?>>
+                    <input type="text" id="<?php echo esc_attr($field['name']); ?>" class="wpx-colorpicker" name="<?php echo esc_attr($field['name']); ?>" value="<?php echo esc_attr($value); ?>" placeholder="<?php echo esc_attr($placeholder); ?>" <?php echo esc_attr($readonly); ?> <?php echo esc_attr($disabled); ?>>
                     <?php echo $this->field_description( $field ); ?>
                 </td>
             </tr>
@@ -307,13 +298,13 @@ class Metabox {
 	public function field_file( $field ){
 		global $post; 
 		$field['default'] = ( isset( $field['default'] ) ) ? $field['default'] : '';
-        $value = get_post_meta( $post->ID, $field['name'], true ) != '' ? get_post_meta( $post->ID, $field['name'], true ) : $field['default']; 
-		$class  = isset( $field['class'] ) && ! is_null( $field['class'] ) ? $field['class'] : 'wpx-meta-field';
-		$disabled  = isset( $field['disabled'] ) && ( $field['disabled'] == true ) ? " disabled" : "";
+        $value           = get_post_meta( $post->ID, $field['name'], true ) != '' ? get_post_meta( $post->ID, $field['name'], true ) : $field['default']; 
+		$class            = isset( $field['class'] ) && ! is_null( $field['class'] ) ? $field['class'] : 'wpx-meta-field';
+		$disabled         = isset( $field['disabled'] ) && ( $field['disabled'] == true ) ? " disabled" : "";
 
-        $id    = $field['name']  . '[' . $field['name'] . ']';
-        $upload_button = isset( $field['upload_button'] ) ? $field['upload_button'] : __( 'Choose File' );
-        $select_button = isset( $field['select_button'] ) ? $field['select_button'] : __( 'Select' );
+        $id              = $field['name']  . '[' . $field['name'] . ']';
+        $upload_button   = isset( $field['upload_button'] ) ? $field['upload_button'] : __( 'Choose File' );
+        $select_button   = isset( $field['select_button'] ) ? $field['select_button'] : __( 'Select' );
 
         $image_data = explode(',',$value);
 
@@ -327,15 +318,15 @@ class Metabox {
 
         ob_start();
         ?>
-            <tr class="text-field <?php echo $class;?>" >
-                <td><strong><label for="<?php echo $field['name']; ?>"><?php echo $field['label']; ?></label></strong></td>
+            <tr class="text-field <?php echo esc_attr($class);?>" >
+                <td><strong><label for="<?php echo esc_attr($field['name']); ?>"><?php echo esc_attr($field['label']); ?></label></strong></td>
                 <td>  
                     <div class="img-wrap">
                         <span class="img-remove">X</span>
                         <img class="image-preview <?php echo ( is_array($image_data) && !empty($image_data[1]) ) ? '' : 'hide'; ?>" src="<?php echo esc_url($image_url); ?>" width="100" height="70" alt="<?php echo esc_attr($alt); ?>"> 
                     </div>
-                    <input type="hidden" class="wpx-img-field <?php echo $class; ?>" id="<?php echo $field['name']; ?>" name="<?php echo $field['name']; ?>" value="<?php echo $value; ?>" <?php echo $disabled; ?>> 
-                    <input type="button" class="button wpx-browse" data-title="<?php esc_attr_e('Media Gallery'); ?>" data-select-text="<?php echo $select_button; ?>" value="<?php echo $upload_button; ?>"  <?php echo $disabled; ?>>
+                    <input type="hidden" class="wpx-img-field <?php echo esc_attr($class); ?>" id="<?php echo esc_attr($field['name']); ?>" name="<?php echo esc_attr($field['name']); ?>" value="<?php echo esc_attr($value); ?>" <?php echo esc_attr($disabled); ?>> 
+                    <input type="button" class="button wpx-browse" data-title="<?php esc_attr_e('Media Gallery'); ?>" data-select-text="<?php echo esc_attr($select_button); ?>" value="<?php echo esc_attr($upload_button); ?>"  <?php echo esc_attr($disabled); ?>>
                     <?php echo $this->field_description( $field ); ?>
                 </td>
             </tr>
@@ -349,40 +340,5 @@ class Metabox {
             $desc = '';
         }
         return $desc;
-    }
-
-    function scripts() {
-        ?>
-        <script>
-            jQuery(document).ready(function($) {
-                //color picker
-                $('.wp-color-picker-field').wpColorPicker();
-
-                // media uploader
-                $('.wpx-browse').on('click', function (event) {
-                    event.preventDefault();
-
-                    var self = $(this);
-
-                    var file_frame = wp.media.frames.file_frame = wp.media({
-                        title: self.data('title'),
-                        button: {
-                            text: self.data('select-text'),
-                        },
-                        multiple: false
-                    });
-
-                    file_frame.on('select', function () {
-                        attachment = file_frame.state().get('selection').first().toJSON();
-
-                        self.prev('.mdc-file').val(attachment.url);
-                        $('.supports-drag-drop').hide()
-                    });
-
-                    file_frame.open();
-                });
-        });
-        </script> 
-        <?php
-    }
+    } 
 } 

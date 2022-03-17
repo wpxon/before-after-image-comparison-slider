@@ -3,8 +3,7 @@ namespace BAICS;
 
 class Post_Type { 
 	function __construct(){
-		add_action( 'init', [ $this, 'register_image_comparison_post_type'] );
-		// add_action( 'init', [ $this, 'register_image_comparison_taxonomy'] );
+		add_action( 'init', [ $this, 'register_image_comparison_post_type'] ); 
 	}
 	/**
 	 * Register a image comparison slider post type called "baics". 
@@ -46,44 +45,6 @@ class Post_Type {
 		];
 
 		register_post_type( 'baics', $args );
-	}
-	
-	/**
-	 * Register a image comparison slider taxonomy called "baics_category". 
-	 */
-	function register_image_comparison_taxonomy() { 
-	 
-		// Add new taxonomy to image slider post type
-		$labels = array(
-			'name'                       => _x( 'Categories', 'taxonomy general name', 'baics' ),
-			'singular_name'              => _x( 'Category', 'taxonomy singular name', 'baics' ),
-			'search_items'               => __( 'Search Categories', 'baics' ),
-			'popular_items'              => __( 'Popular Categories', 'baics' ),
-			'all_items'                  => __( 'All Categories', 'baics' ),
-			'parent_item'                => null,
-			'parent_item_colon'          => null,
-			'edit_item'                  => __( 'Edit Category', 'baics' ),
-			'update_item'                => __( 'Update Category', 'baics' ),
-			'add_new_item'               => __( 'Add New Category', 'baics' ),
-			'new_item_name'              => __( 'New Category Name', 'baics' ),
-			'separate_items_with_commas' => __( 'Separate writers with commas', 'baics' ),
-			'add_or_remove_items'        => __( 'Add or remove writers', 'baics' ),
-			'choose_from_most_used'      => __( 'Choose from the most used writers', 'baics' ),
-			'not_found'                  => __( 'No writers found.', 'baics' ),
-			'menu_name'                  => __( 'Categories', 'baics' ),
-		);
-	 
-		$args = array(
-			'labels'                     => $labels,
-			'hierarchical'               => true,
-			'public'                     => true,
-			'show_ui'                    => true,
-			'show_admin_column'          => true,
-			'show_in_nav_menus'          => true,
-			'show_tagcloud'              => true,
-		);
-	 
-		register_taxonomy( 'baics_category', 'baics', $args );
 	}
 
 }

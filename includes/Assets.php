@@ -15,7 +15,11 @@ class Assets {
     } 
  
     public function admin_assets() {
+        wp_enqueue_style( 'wp-color-picker' );
+        wp_enqueue_media();
     	wp_enqueue_style( 'baics-admin', BAICS_ASSETS . '/css/admin.css',[], md5_file(BAICS_ASSETS . '/css/admin.css'),'all' );
+        
+        wp_enqueue_script( 'wp-color-picker' );
         wp_enqueue_script( 'baics-admin', BAICS_ASSETS . '/js/admin.js', ['jquery'], md5_file(BAICS_ASSETS . '/js/admin.js'), true );
     }  
  

@@ -11,10 +11,10 @@ class Admin{
 		
 		$columns = array(
 			'cb'             => $columns['cb'],
-			'title'          => __( 'Title' ), 
-			'shortcode'      => __( 'Shortcode', 'smashing' ),
-			'sliderpreview'  => __( 'Slider Preview', 'smashing' ),
-			'date'           => __( 'Date', 'smashing' ),
+			'title'          => __( 'Title', 'baics' ), 
+			'shortcode'      => __( 'Shortcode', 'baics' ),
+			'sliderpreview'  => __( 'Slider Preview', 'baics' ),
+			'date'           => __( 'Date', 'baics' ),
 		);
 	 
 		return $columns;
@@ -23,8 +23,8 @@ class Admin{
     function image_comparison_slider_column( $column, $post_id ) {
         // Shortcode column
         if ( 'shortcode' === $column ) { 
-            echo '<input class="shortcode-display" type=\'text\' value=\'[baics id="'.$post_id.'"]\' readonly>';
-			echo '<span class="copytext-notice hide">Shortcode Copied</span>';
+            echo '<input class="shortcode-display" type=\'text\' value=\'[baics id="'.esc_attr($post_id).'"]\' readonly>';
+			echo '<span class="copytext-notice hide">'.__('Shortcode Copied','baics').'</span>';
         } 
         // Slider preview column
         if ( 'sliderpreview' === $column ) {
@@ -44,8 +44,8 @@ class Admin{
 			} 
 			if( !empty($before_img_url) || !empty($after_img_url) ) {
 				echo '<div class="slider-preview">';
-				echo '<div class="before"><img class="slide-img" src="'.$before_img_url.'"></div>';
-				echo '<div class="after"><img class="slide-img" src="'.$after_img_url.'"></div>';
+				echo '<div class="before"><img class="slide-img" src="'.esc_url($before_img_url).'"></div>';
+				echo '<div class="after"><img class="slide-img" src="'.esc_url($after_img_url).'"></div>';
 				echo '</div>';
 			} 
         }
