@@ -59,8 +59,16 @@ class Shortcode {
         $blur  = get_post_meta( $id, 'slider_shadow_blur', true ); 
         $shadow_color  = get_post_meta( $id, 'slider_shadow_color', true ); 
         $handle_color  = get_post_meta( $id, 'slider_handle_color', true ); 
+        $box_width  = get_post_meta( $id, 'slider_box_width', true ); 
+        $box_height  = get_post_meta( $id, 'slider_box_height', true ); 
         ?>
             <style> 
+                <?php if(!empty($box_width) && !empty($box_height)): ?>
+                    #baics-<?php echo $id; ?>.slider-preview{
+                        width: <?php echo $box_width ?: 0; ?>px !important;
+                        height: <?php echo $box_height ?: 0; ?>px !important;
+                    }
+                <?php endif; ?>
                 <?php if($shadow == 'on'): ?>
                     #baics-<?php echo $id; ?>.slider-preview{
                         box-shadow: <?php echo $h_offset ?: 0; ?>px <?php echo $v_offset ?: 0; ?>px <?php echo $blur ?: 0; ?>px <?php echo $shadow_color; ?>;
