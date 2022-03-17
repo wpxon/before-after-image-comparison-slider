@@ -8,6 +8,7 @@
  * Author URI: http://wpxon.com
  * License: GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+ * Tags: before after, before after slider, before after image, before after image comparison, before after multiple image, compare images, image comparison, before after slider wordpress, before after image, twentytwenty, wordpress before after slider, before after wordpress
  * Text Domain: baics
  * Domain Path: /i18n
  */
