@@ -24,7 +24,7 @@ class Admin{
         // Shortcode column
         if ( 'shortcode' === $column ) { 
             echo '<input class="shortcode-display" type=\'text\' value=\'[baics id="'.$post_id.'"]\' readonly>';
-			echo '<span class="copytext-notice hide">Copied Shortcode</span>';
+			echo '<span class="copytext-notice hide">Shortcode Copied</span>';
         } 
         // Slider preview column
         if ( 'sliderpreview' === $column ) {

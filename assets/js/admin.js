@@ -38,8 +38,7 @@ window.onload = (e) => {
             e.preventDefault(); 
             e.target.select();
             document.execCommand("copy");
-            let copy_notice = item.nextElementSibling;
-            // let copy_notice = document.querySelector('.copytext-notice');
+            let copy_notice = item.nextElementSibling; 
             copy_notice.classList.remove('hide');
             setTimeout(()=>{
                 copy_notice.classList.add('hide');
