@@ -37,7 +37,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
     function scrollIt(x,id,layout){
         let after = '#'+id+' .after';
         let scroller = '#'+id+' .scroller';
-        console.log(scroller);
         if( layout == 'horizontal' ){
             let transform = Math.max(0,(Math.min(x,document.getElementById(id).offsetWidth)));
             document.querySelector(after).style.width = transform+"px";
@@ -65,7 +64,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         // Let's figure out where their mouse is at
         document.getElementById(id).addEventListener('mousemove',function(e){ 
-            console.log(active);
             if(auto_mousemove != 'on'){
                 if (!active) return;
             }
