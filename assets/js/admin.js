@@ -32,17 +32,20 @@ window.onload = (e) => {
         });
     }
 
-    let shortcode_display = document.querySelector('.shortcode-display');
-    shortcode_display.onclick = (e) => {
-        e.preventDefault(); 
-        e.target.select();
-        document.execCommand("copy");
-        let copy_notice = document.querySelector('.copytext-notice');
-        copy_notice.classList.remove('hide');
-        setTimeout(()=>{
-            copy_notice.classList.add('hide');
-        },1500); 
-    }
+    let shortcode_display = document.querySelectorAll('.shortcode-display');
+    shortcode_display.forEach(item => { 
+        item.onclick = (e) => {
+            e.preventDefault(); 
+            e.target.select();
+            document.execCommand("copy");
+            let copy_notice = item.nextElementSibling;
+            // let copy_notice = document.querySelector('.copytext-notice');
+            copy_notice.classList.remove('hide');
+            setTimeout(()=>{
+                copy_notice.classList.add('hide');
+            },1500); 
+        }
+    });
 
 }
 
