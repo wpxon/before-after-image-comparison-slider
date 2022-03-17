@@ -1,5 +1,10 @@
 window.addEventListener('DOMContentLoaded', (event) => {
+    let wrapper_width = document.querySelector(".slider-preview").offsetWidth; 
+    let img_offset = document.querySelector(".slider-preview").dataset.offset;  
+    let percentage = ( wrapper_width * img_offset ) / 100; 
+    let default_offset = percentage || ( wrapper_width /2 );
 
+    
     // I hope this over-commenting helps. Let's do this!
     // Let's use the 'active' variable to let us know when we're using it
     let active = false;
@@ -56,7 +61,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     // Let's set our opening state based off the width, 
     // we want to show a bit of both images so the user can see what's going on
-    scrollIt(260);
+    scrollIt(default_offset);
  
     // And finally let's repeat the process for touch events
     // first our middle scroller...

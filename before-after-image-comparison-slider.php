@@ -147,7 +147,7 @@ wpx_metabox(
                         'class'   =>  '',
                         'readonly'  =>  false,
                         'disabled'  =>  false,
-                    )
+                    ) 
                 ),
             ),
             array(
@@ -156,12 +156,15 @@ wpx_metabox(
                 'icon' => 'dashicons-admin-generic',
                 'fields' => array(
                     array(
-                        'name'      =>  'ex_checkbox',
-                        'label'     =>  __( 'Checkbox Field' ),
-                        'type'      =>  'checkbox',
-                        'desc'      =>  __( 'This is a checkbox field.' ),
-                        'class'     =>  '',
-                        'disabled'  =>  false, // true|false
+                        'name'      =>  'slider_img_offset',
+                        'label'     =>  __( 'Offset' ),
+                        'type'      =>  'text',   
+                        'default'   =>  '50',
+                        'placeholder'   =>  '20px',
+                        'class'   =>  'no-sep',
+                        'readonly'  =>  false,
+                        'disabled'  =>  false,
+                        'desc'  => __( 'Insert percentage value of 100 except %. Ex: 20,40,60' ),
                     ),
                     array(
                         'name'      =>  'sample_fise',

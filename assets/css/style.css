@@ -5,7 +5,9 @@
     position: relative;
     height: 450px;
     overflow: hidden;
-    box-shadow:  0 6px 6px rgba(0,0,0,0.23);
+}
+.shadow{
+  box-shadow:  0 6px 6px rgba(0,0,0,0.23);
 }
 .slider-preview .before, 
 .slider-preview .after {
@@ -62,7 +64,9 @@
     height: 80%;
     padding: 5px;
 }
-  
+.slider-preview .scroller svg polygon{
+  fill:#fff;
+}
   .scroller:before,
   .scroller:after{
     content:" ";
