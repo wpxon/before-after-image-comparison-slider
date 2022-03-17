@@ -59,6 +59,9 @@ tr.text-field.no-sep  td:nth-child(2) .description{
     display: block;
     margin: 5px 0;
 }
+.wpx-metabox-body tr.short input {
+    width: 70px !important;
+}
 .show{
     display: block !important;
 }

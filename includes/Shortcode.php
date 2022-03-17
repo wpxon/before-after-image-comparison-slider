@@ -63,7 +63,7 @@ class Shortcode {
             <style> 
                 <?php if($shadow == 'on'): ?>
                     #baics-<?php echo $id; ?>.slider-preview{
-                        box-shadow: <?php echo $h_offset; ?> <?php echo $v_offset; ?> <?php echo $blur; ?> <?php echo $shadow_color; ?>;
+                        box-shadow: <?php echo $h_offset ?: 0; ?>px <?php echo $v_offset ?: 0; ?>px <?php echo $blur ?: 0; ?>px <?php echo $shadow_color; ?>;
                     }
                 <?php endif; ?>
                 <?php if(!empty($handle_color)): ?>

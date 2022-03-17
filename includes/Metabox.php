@@ -175,12 +175,13 @@ class Metabox {
 		$disabled  = isset( $field['disabled'] ) && ( $field['disabled'] == true ) ? ' disabled' : '';
 		$require  = isset( $field['require'] ) && ( $field['require'] == true ) ? $field['require'] : '';
 		$class  = isset( $field['class'] ) && ! is_null( $field['class'] ) ? $field['class'] : 'wpx-meta-field';
+		$ext  = isset( $field['ext'] ) && ! is_null( $field['ext'] ) ? $field['ext'] : '';
         ob_start();
         ?>
             <tr class="text-field <?php echo $class;?> <?php echo $require;?>" >
                 <td><strong><label for="<?php echo $field['name']; ?>"><?php echo $field['label']; ?></label></strong></td>
                 <td>
-                    <input type="text" id="<?php echo $field['name']; ?>" name="<?php echo $field['name']; ?>" value="<?php echo esc_attr($value); ?>" placeholder="<?php echo esc_attr($placeholder); ?>" <?php echo esc_attr($readonly); ?> <?php echo esc_attr($disabled); ?>>
+                    <input type="text" id="<?php echo $field['name']; ?>" name="<?php echo $field['name']; ?>" value="<?php echo esc_attr($value); ?>" placeholder="<?php echo esc_attr($placeholder); ?>" <?php echo esc_attr($readonly); ?> <?php echo esc_attr($disabled); ?>> <?php echo esc_html($ext); ?>
                     <?php echo $this->field_description( $field ); ?>
                 </td>
             </tr>
