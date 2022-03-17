@@ -46,7 +46,7 @@
     pointer-events:auto;
     cursor: pointer;
     z-index: 999999;
-    margin-left: -5px;
+    margin-left: -4px;
   }
   
   .scroller:hover{
