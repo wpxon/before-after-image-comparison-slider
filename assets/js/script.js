@@ -54,12 +54,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
         let id = item.id;
         let layout = item.dataset.layout;
         let auto_mousemove = item.dataset.autoMousemove; 
+        let default_offset,percentage;
 
-
-        let wrapper_width = item.offsetWidth; 
         let img_offset = item.dataset.offset;  
-        let percentage = ( wrapper_width * img_offset ) / 100; 
-        let default_offset = percentage || ( wrapper_width /2 );
+        if( layout == 'horizontal' ){
+            let wrapper_width = item.offsetWidth; 
+            percentage = ( wrapper_width * img_offset ) / 100; 
+            default_offset = percentage || ( wrapper_width /2 );
+        } 
+        if( layout == 'vertical' ){
+            let wrapper_height = item.offsetHeight; 
+            percentage = ( wrapper_height * img_offset ) / 100; 
+            default_offset = percentage || ( wrapper_height /2 );
+        }
 
 
         // Let's figure out where their mouse is at
