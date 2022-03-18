@@ -127,7 +127,7 @@ class Metabox {
             foreach ( $this->tabs as $tab ){ 
                 foreach ( $tab['fields'] as $field ){
                     $key = $field['name'];
-                    $meta_values[$key] = $_POST[$key];
+                    $meta_values[$key] = sanitize_text_field( $_POST[$key] );
                 } 
             }
             foreach ( $meta_values as $key => $value ) {
@@ -142,7 +142,7 @@ class Metabox {
         }else{
             foreach ( $this->fields as $field ){
                 $key = $field['name'];
-                $meta_values[$key] = $_POST[$key];
+                $meta_values[$key] = sanitize_text_field( $_POST[$key] );
             }
     
             foreach ( $meta_values as $key => $value ) {
