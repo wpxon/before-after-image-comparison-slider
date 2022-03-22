@@ -3,7 +3,7 @@
  * Plugin name: Before After Image Comparison Slider
  * Plugin URI: http://wpxon.com/plugins/before-after-image-compariosn-slider
  * Description: A image comparison plugin for WordPress.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: WPxon
  * Author URI: http://wpxon.com
  * License: GPL-2.0+

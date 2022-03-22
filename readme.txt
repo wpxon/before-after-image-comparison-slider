@@ -4,7 +4,7 @@ Donate link:https://wpxon.com/
 Tags: before after, before after slider, before after image, before after image comparison, before after multiple image, compare images, image comparison, before after slider wordpress, before after image, twentytwenty, wordpress before after slider, before after wordpress
 Requires at least: 4.0
 Tested up to: 5.9
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,5 +43,8 @@ Activate the plugin. Look for "Before After Image Slider" in the admin menu.
 
 == Changelog ==
   
+= 1.0.1 =
+* Bug Fixed: data sanitization
+
 = 1.0.0 =
 * Initial Release
