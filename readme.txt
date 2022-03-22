@@ -37,8 +37,9 @@ Activate the plugin. Look for "Before After Image Slider" in the admin menu.
 
 == Screenshots ==
 
-1. Frontend 
-2. Settings 
+1. Settings 
+2. Frontend Horizontal 
+3. Frontend Vertical
   
 
 == Changelog ==
